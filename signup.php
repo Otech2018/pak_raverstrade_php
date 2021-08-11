@@ -1,9 +1,152 @@
+<?php include('settings.php');
+
+
+if (isset($_POST['reg_btn'])) {
+
+	//if isset statement starts
+	$name = addslashes(htmlentities($_POST['name']));
+	$fullname = addslashes(htmlentities($_POST['fullname']));
+	$ref_email1 = addslashes(htmlentities($_POST['ref_email']));
+	$email = addslashes(htmlentities($_POST['email']));
+	$password = addslashes(htmlentities($_POST['password']));
+	$user_phone = addslashes(htmlentities($_POST['user_phone']));
+	$password_confirmation = addslashes(htmlentities($_POST['password_confirmation']));
+	$btc_address = addslashes(htmlentities($_POST['btc_address']));
+
+
+	if ($password === $password_confirmation)  //check password match starts
+	{
+
+		//check user existence
+		$query = "SELECT * from users where user_email ='$email'  or user_name ='$name'  ";
+		$query_run  = new run_query($query);
+		if ($query_run->num_rows != 1) {
+
+
+			$json_data = array(
+				"callback" => array(
+					'url' => 'https://raverstrade.com/callback.php',
+					'data' => array(
+						'invoice_id' => "$email",
+						'secret' => "$secret"
+					)
+				)
+			);
+
+			$api_base = "https://apirone.com/api/v2/wallets/" . $wallet . "/addresses";
+
+			$curl = curl_init($api_base);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+			curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($json_data));
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			$http_status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+			$response = curl_exec($curl);
+			curl_close($curl);
+
+
+			$decoded = json_decode($response, true);
+			//   echo "Please send the payment to the following bitcoin address: " .
+			$pay_address = $decoded["address"];
+
+
+			if (!empty($ref_email1)) {   //check and credit referrer email starts
+				$queryss = "SELECT * from user_ref where user_ref_email ='$ref_email1' ";
+				$query_runaa  = new run_query($queryss);
+				if ($query_runaa->num_rows == 0) {
+
+					echo "<script>alert(\"Invalid Referral  !!! Please Check the Referral or leave it blank\"); window.location.replace(\"signup.php\"); </script>";
+				} else {
+					$user_ref_data =    $query_runaa->result();
+					extract($user_ref_data);
+
+					$query211 = new run_query("INSERT into user_ref set user_ref_email='$name', gen1_email='$ref_email1',  reg_date='$reg_Date', gen2_email='$gen1_email',gen3_email='$gen2_email' ");
+
+					$query21 =  "INSERT into users set  user_name='$name', pay_address='$pay_address', btc_address='$btc_address', user_phone='$user_phone', fullname='$fullname', user_password='$password',  user_email='$email',     reg_date='$reg_Date', user_referrer='$ref_email1', user_ref_bonus='0', user_status='Active' ";
+
+					$query_runer = new run_query($query21);
+
+					echo "<script>alert(\"Account Registered Successfully!!! Its Now Time TO LogIn\"); window.location.replace(\"login.php\"); </script>";
+				}
+			} else {     //check and credit referrer email ends
+				$query21 =  "INSERT into users set  user_name='$name', user_password='$password', pay_address='$pay_address', btc_address='$btc_address', user_phone='$user_phone', fullname='$fullname',  user_email='$email',   reg_date='$reg_Date', user_referrer='$ref_email1', user_status='Active', user_ref_bonus='0'  ";
+				$query211 = new run_query("INSERT into user_ref set user_ref_email='$name'  ");
+
+
+				if ($query_runer = new run_query($query21)) {
+
+
+					$site_email_send = $site_email;
+					$welcome_email_subject = "Welcome to $site_name";
+					$welcome_email_headers = "Content-type:text/html;charset=UTF-8 \r\n";
+					$welcome_email_headers .= "From: $site_name";
+
+
+					$welcome_email_body = "
+
+<html>
+<head>
+<title> Welcome to $site_name </title>
+</head>
+<body>
+<b>Hi, $name<b> <br/>
+<h2> $site_name we are happy to have you!</h2>
+You Have Successfully Registered on $site_name, <br/>
+<b><i>We are Happy To Have  you on Board. </i></b><br/>
+
+<hr/>
+Get In Touch <br/>
+
+
+<b>
+$site_email <br/>
+
+$site_phone <br/>
+</b>
+Visit us on <br/>
+
+$site_link <br/><br/><br/>
+
+best Regards,  $site_name.
+</body>
+</html>
+
+";
+
+					mail($email, $welcome_email_subject, $welcome_email_body, $welcome_email_headers);
+
+
+
+					echo "<script> window.location.replace(\"done.php\"); </script>";
+				} else {
+					echo "<script>alert(\"An Error Occurred Please Try Again \"); window.location.replace(\"signup.php\"); </script>";
+				}
+			}
+		} else {
+
+			echo "<script>alert(\"Username or Email Already Exits \"); window.location.replace(\"signup.php\"); </script>";
+		}   //check user existence ends
+
+	} else {
+		echo "<script>alert(\"Password Not Match!!! \"); window.location.replace(\"signup.php\"); </script>";
+	}   //check password match ends
+
+
+}
+
+
+
+@$ref_email1 = addslashes(htmlentities($_GET['ref']));
+
+
+?>
+
+
+
+
 <!doctype html>
 <html lang="en">
 
-
-<!-- Mirrored from invest-card.com/signup by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Aug 2021 11:45:27 GMT -->
-<!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
@@ -27,103 +170,13 @@
 	<link href="assets/css/sweetalert2.min.css" rel="stylesheet">
 	<script src="assets/js/sweetalert2.all.min.js"></script>
 	<script src="assets/js/ext-component-sweet-alerts.js"></script>
-	<title>Invest-Card - Investment Project Registration Form</title>
+	<title>Ravers Trade - Investment Project Registration Form</title>
+
+	
 </head>
 
 <body class="bg-login">
 	<!--wrapper-->
-
-
-	<script language=javascript>
-		function checkform() {
-			if (document.regform.fullname.value == '') {
-				alert("Please enter your full name!");
-				document.regform.fullname.focus();
-				return false;
-			}
-
-
-			if (document.regform.username.value == '') {
-				alert("Please enter your username!");
-				document.regform.username.focus();
-				return false;
-			}
-			if (!document.regform.username.value.match(/^[A-Za-z0-9_\-]+$/)) {
-				alert("For username you should use English letters and digits only!");
-				document.regform.username.focus();
-				return false;
-			}
-			if (document.regform.password.value == '') {
-				alert("Please enter your password!");
-				document.regform.password.focus();
-				return false;
-			}
-			if (document.regform.password.value != document.regform.password2.value) {
-				alert("Please check your password!");
-				document.regform.password2.focus();
-				return false;
-			}
-
-
-			if (document.regform.email.value == '') {
-				alert("Please enter your e-mail address!");
-				document.regform.email.focus();
-				return false;
-			}
-			if (document.regform.email.value != document.regform.email1.value) {
-				alert("Please retype your e-mail!");
-				document.regform.email.focus();
-				return false;
-			}
-
-			for (i in document.regform.elements) {
-				f = document.regform.elements[i];
-				if (f.name && f.name.match(/^pay_account/)) {
-					if (f.value == '') continue;
-					var notice = f.getAttribute('data-validate-notice');
-					var invalid = 0;
-					if (f.getAttribute('data-validate') == 'regexp') {
-						var re = new RegExp(f.getAttribute('data-validate-regexp'));
-						if (!f.value.match(re)) {
-							invalid = 1;
-						}
-					} else if (f.getAttribute('data-validate') == 'email') {
-						var re = /^[^\@]+\@[^\@]+\.\w{2,4}$/;
-						if (!f.value.match(re)) {
-							invalid = 1;
-						}
-					}
-					if (invalid) {
-						alert('Invalid account format. Expected ' + notice);
-						f.focus();
-						return false;
-					}
-				}
-			}
-
-			if (document.regform.agree.checked == false) {
-				alert("You have to agree with the Terms and Conditions!");
-				return false;
-			}
-
-			return true;
-		}
-
-		function IsNumeric(sText) {
-			var ValidChars = "0123456789";
-			var IsNumber = true;
-			var Char;
-			if (sText == '') return false;
-			for (i = 0; i < sText.length && IsNumber == true; i++) {
-				Char = sText.charAt(i);
-				if (ValidChars.indexOf(Char) == -1) {
-					IsNumber = false;
-				}
-			}
-			return IsNumber;
-		}
-	</script>
-
 
 
 
@@ -148,7 +201,10 @@
 										<h4 style="color:white;">
 											<tr>
 												<td>Your Upline:</td>
-												<td>N/A (n/a)</td>
+												<td>
+
+													<?php if (isset( $_GET['ref'] )) { echo $ref_email1 ;}else{echo "No Upliner";}?>
+												</td>
 											</tr>
 										</h4>
 									</div>
@@ -157,25 +213,23 @@
 										<hr />
 									</div>
 									<div class="form-body">
-										<form method=post class="row g-3"><input type="hidden" name="form_id" value="16281636949563"><input type="hidden" name="form_token" value="bd66eda72fc470c930bf6c93d4386646">
-											<input type=hidden name=a value="signup">
-											<input type=hidden name=action value="signup">
+										<form method=post class="row g-3">
+
+
+											<input type=hidden name=ref_email value="<?php if (isset($ref_email1)) {echo $ref_email1;} ?>">
 											<div class="col-sm-6">
 												<label for="fullname" class="form-label">Full Name</label>
 												<input type="text" name=fullname class="form-control" value="" placeholder="Name Surname" required>
 											</div>
 											<div class="col-sm-6">
 												<label for="username" class="form-label">Username</label>
-												<input type=text name=username value="" class="form-control" id="username" placeholder="Nick Name" required>
+												<input type=text name=name value="" class="form-control" id="username" placeholder="Nick Name" required>
 											</div>
 											<div class="col-12">
 												<label class="form-label">Email Address</label>
-												<input type=text name="email" id="email" value="" class="form-control" placeholder="email@example.com" required>
+												<input type=email name="email" id="email" value="" class="form-control" placeholder="email@example.com" required>
 											</div>
-											<div class="col-12 d-none">
-												<label class="form-label">Retype Email Address</label>
-												<input type=text name="email1" id="email1" value="" class="form-control" placeholder="email@example.com" required>
-											</div>
+
 											<div class="col-12">
 												<label class="form-label">Password</label>
 												<div class="input-group" id="show_hide_password">
@@ -186,11 +240,22 @@
 											<div class="col-12 ">
 												<label class="form-label">Retype Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type=password name="password2" id="password2" value="" class="form-control border-end-0" value="12345678" placeholder="Enter Password" required>
+													<input type=password name="password_confirmation" id="password2" value="" class="form-control border-end-0" value="12345678" placeholder="Enter Password" required>
 													<a href="javascript:;" class="input-group-text bg-transparent text-white"><i class='bx bx-hide'></i></a>
 												</div>
 											</div>
+
 											<div class="col-12">
+												<label class="form-label">BTC Wallet Address</label>
+												<input type=text name="btc_address" id="email" value="" class="form-control" placeholder="BTC Wallet Address" required>
+											</div>
+
+
+											<div class="col-12">
+												<label class="form-label">Phone Number</label>
+												<input type=text name="user_phone" id="email" value="" class="form-control" placeholder="Phone Number" required>
+											</div>
+											<!-- <div class="col-12">
 												<label for="inputSelectCountry" class="form-label">Country</label>
 												<select name=country class="form-select" id="inputSelectCountry" aria-label="Default select example">
 													<option value="" selected>--SELECT--</option>
@@ -437,33 +502,18 @@
 													<option>Zambia</option>
 													<option>Zimbabwe</option>
 												</select>
-											</div>
-
-
-											<style>
-												div.g-recaptcha {
-													margin: 0 auto;
-													width: 304px;
-													padding: 5px;
-												}
-											</style>
-											<script src='../www.google.com/recaptcha/api.js'></script>
-											<tr>
-												<td class=menutxt colspan=2>
-													<div class="g-recaptcha" data-sitekey="6LeJaJsbAAAAAA1SHUbpSZ0SJinMUvL6oahRHgwQ"></div>
-												</td>
-											</tr>
+											</div> -->
 
 
 
 											<div class="col-12">
 												<div class="form-check form-switch">
-													<input class="form-check-input" type=checkbox name=agree value=1> I agree with <a href="rules.php">Terms and conditions</a></td>
+													<input class="form-check-input" type=checkbox name=agree value=1 required> I agree with <a href="rules.php">Terms and conditions</a></td>
 												</div>
 											</div>
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" class="btn btn-primary"><i class='bx bx-user'></i>Sign up</button>
+													<button type="submit" class="btn btn-primary" name="reg_btn"><i class='bx bx-user'></i>Sign up</button>
 												</div>
 											</div>
 
@@ -533,6 +583,6 @@
 </body>
 
 
-<!-- Mirrored from invest-card.com/signup by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Aug 2021 11:45:29 GMT -->
+<!-- Mirrored from Ravers Trade.com/signup by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Aug 2021 11:45:29 GMT -->
 
 </html>

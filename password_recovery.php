@@ -1,7 +1,76 @@
+
+
+<?php include('settings.php'); 
+
+
+if (isset($_POST['rec'])){
+     $email = addslashes(htmlentities($_POST['email']));
+     $query ="SELECT * from users where user_email ='$email'  or user_name ='$email'  ";
+                $query_run  =new run_query($query);
+                    if( $query_run->num_rows >= 1){
+
+                         $rec_data =   $query_run->result();
+                            
+                                extract($rec_data );
+
+                        $welcome_email_subject = "RECOVERY PASSWORD FROM - $site_name";
+$welcome_email_headers = "Content-type:text/html;charset=UTF-8 \r\n";
+$welcome_email_headers .= "From: $site_name";   
+
+
+$welcome_email_body = "
+
+<html>
+<head>
+<title> RECOVERY PASSWORD FROM - $site_name </title>
+</head>
+<body>
+<b>Hello, $user_name<b> <br/>
+<h2> REQUEST FOR RECOVERY PASSWORD FROM - $site_name </h2>
+You requested for your passowrd and we get it for you securely and safely , <br/>
+you login details is as follows:
+<br/>
+Username: <b> $user_name </b>
+Email: <b> $user_email </b>
+Password: <b> $user_password </b>
+<b><i>We are Happy To Have  you on Board again. </i></b><br/>
+You can now login with this Credential!!! <br/><br/>
+<hr/>
+For enquiries, <br/>
+Contact us on <br/>
+
+<b>
+$site_email <br/>
+
+$site_phone <br/>
+</b>
+Visit us on <br/>
+
+$site_link <br/><br/><br/>
+
+Regards,  $site_name.
+</body>
+</html>
+
+";
+
+mail($email,$welcome_email_subject,$welcome_email_body,$welcome_email_headers);
+                        echo "<script>alert(\"We have Sent Recovery Password to your Mail!. Please Check your Mail \"); window.location.replace(\"login.php\"); </script>";
+
+
+                    }else{
+                        echo "<script>alert(\"Invalid Email or Username \"); window.location.replace(\"password_recovery.php\"); </script>";
+                    }
+
+}
+
+
+
+?>
+
+
 <html lang="en">
 
-<!-- Mirrored from Raverstrade.com/password_recovery by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Aug 2021 11:58:21 GMT -->
-<!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
@@ -32,16 +101,7 @@
 	<!--wrapper-->
 
 
-	<script language=javascript>
-		function checkform() {
-			if (document.forgotform.email.value == '') {
-				alert("Please type your username or email!");
-				document.forgotform.email.focus();
-				return false;
-			}
-			return true;
-		}
-	</script>
+	
 
 
 
@@ -70,9 +130,7 @@
 									</div>
 									<div class="form-body">
 
-										<form method=post name=forgotform onsubmit="return checkform();" class="row g-3"><input type="hidden" name="form_id" value="16281639189104"><input type="hidden" name="form_token" value="68e9fb35dcaefea8cb25e552c0a45820">
-											<input type=hidden name=a value="forgot_password">
-											<input type=hidden name=action value="forgot_password">
+										<form method=post  class="row g-3">
 											<div class="col-12">
 												<label class="form-label">Type your username or e-mail:</label>
 												<input type=text name='email' value="" class="form-control" placeholder="Username or E-mail" required>
@@ -80,7 +138,7 @@
 
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Forgot</button>
+													<button type="submit"  name="rec" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Forgot</button>
 												</div>
 											</div>
 											<div class="col-12">

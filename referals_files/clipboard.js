@@ -10,7 +10,7 @@ btnCopy.on('click', function() {
     Swal.fire({
         position: 'bottom-end',
         icon: 'success',
-        title: 'Link copied',
+        title: 'Referral Link copied',
         showConfirmButton: false,
         timer: 1500,
         customClass: {

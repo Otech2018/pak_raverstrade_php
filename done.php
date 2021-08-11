@@ -66,18 +66,20 @@
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
                                         <h3 class="text-white">Registration completed</h3>
-                                        <p>Thank you for registering at Invest-Card <a href="/login">Sign in here</a>
+                                        <p>Thank you for registering at Ravers Trade <a href="/login">Sign in here</a>
                                         </p>
                                     </div>
 
-                                    <div class="login-separater text-center mb-4"> <span>OR SIGN UP WITH EMAIL</span>
+                                    <div class="login-separater text-center mb-4"> <span>We are Happy to Have you on Board</span>
                                         <hr>
                                     </div>
                                     <div class="form-body">
 
                                         <p>
                                             Now you can now log into your account.
-                                            All account options are active and ready to use. Remember to protect access to your account in the best possible way. We suggest you do not share your login details with anyone and enable 2 Factor Authentication for the best account protection.
+                                            All account options are active and ready to use. Remember to protect access to your account
+                                             in the best possible way. We suggest you do not share your login details with anyone 
+                                              for the best account protection.
                                         </p>
                                         <div class="col-12">
                                             <div class="d-grid">

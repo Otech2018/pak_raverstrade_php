@@ -1,3 +1,7 @@
+
+<?php include('settings.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -532,14 +536,12 @@
                 <ul class="social-icons">
 
 
+                   
                     <li>
-                        <a href="https://www.youtube.com/channel/UCjLSdMGkNLCIPts3gSoOPQQ"><i class="fab fa-youtube"></i></a>
+                        <a href="<?=$site_whatsapp;?>"><i class="fab fa-whatsapp"></i></a>
                     </li>
                     <li>
-                        <a href="https://t.me/investcardproject"><i class="fab fa-telegram"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://t.me/Investcardsupport"><i class="fab fa-telegram"></i></a>
+                        <a href="<?=$site_telegram;?>"><i class="fab fa-telegram"></i></a>
                     </li>
                 </ul>
             </div>

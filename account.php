@@ -1,3 +1,49 @@
+<?php include('settings.php'); 
+
+
+if( !loggedin() ){
+
+    echo "<script> window.location.replace(\"login.php\"); </script>";
+  }
+
+
+
+
+
+  include('data.php');
+
+
+
+$total_cashout = new run_query("select sum(trant_amt) as total_cash_out from transaction where  tran_desc ='CASH_OUT'   and tran_user_id='$user_id'  ");
+								$total_cashout_data =	$total_cashout->result();
+							extract($total_cashout_data );
+				$all_cashout = 		$total_cash_out;			
+			
+			
+			
+				$total_deposit = new run_query("select sum(trant_amt) as total_deposit_ from transaction where  tran_desc ='DEPOSIT' and tran_status='CONFIRMED' and tran_user_id='$user_id'  ");
+								$total_deposit_data =	$total_deposit->result();
+							extract($total_deposit_data );
+			$all_deposit = 		$total_deposit_ ;	
+
+
+
+			$pending_invest = new run_query("select sum(trant_amt) as pending_invest from transaction where  tran_desc ='INVESTMENT' and tran_status='ACTIVE' and tran_user_id='$user_id'  ");
+								$pending_invest_d =	$pending_invest->result();
+							extract($pending_invest_d );
+			$pending_invest_da = 		$pending_invest ;
+
+
+			$co_invest = new run_query("select sum(trant_amt) as co_invest from transaction where  tran_desc ='INVESTMENT'  and tran_user_id='$user_id'  ");
+								$co_invest_c =	$co_invest->result();
+							extract($co_invest_c );
+			$comp_invest_da = 		$co_invest ;
+
+		
+
+?>
+
+
 <!DOCTYPE html>
 <html class="dark-theme" style="height: 100%;" lang="en">
 
@@ -1679,7 +1725,7 @@
         gtag('config', 'G-SVQ3TM2N3R');
     </script>
 
-    <title>Invest-Card | Investment Project</title>
+    <title>Ravers Trade | Investment Project</title>
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="account_files/translateelement.css">
     <script type="text/javascript" charset="UTF-8" src="account_files/main.js"></script>
     <style type="text/css">
@@ -2378,7 +2424,7 @@
                                         <img src="account_files/logo-icon.png" class="logo-icon" alt="logo icon">
                                     </div>
                                     <div>
-                                        <h4 class="logo-text">Invest Card</h4>
+                                        <h4 class="logo-text">Ravers Trade</h4>
                                     </div>
                                     <div class="toggle-icon ms-auto"><i class="bx bx-arrow-to-left"></i>
                                     </div>
@@ -2411,16 +2457,10 @@
                                         <a href="deposit_list" aria-expanded="true">
                                             <div class="parent-icon"><i class="bx bx-wallet-alt"></i>
                                             </div>
-                                            <div class="menu-title">DEPOSITS</div>
+                                            <div class="menu-title">INVESTMENTS</div>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="earnings" aria-expanded="true">
-                                            <div class="parent-icon"><i class="bx bx-stats"></i>
-                                            </div>
-                                            <div class="menu-title">HISTORY</div>
-                                        </a>
-                                    </li>
+                                   
 
                                     <li class="menu-label">AFFILIATE PROGRAM</li>
                                     <li>
@@ -2430,13 +2470,7 @@
                                             <div class="menu-title">REFERRALS</div>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="referallinks" aria-expanded="true">
-                                            <div class="parent-icon"><i class="bx bx-hash"></i>
-                                            </div>
-                                            <div class="menu-title">PROMO MATERIALS</div>
-                                        </a>
-                                    </li>
+                                  
                                  
                                     <hr>
                                     <li>
@@ -2971,13 +3005,12 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="edit_account"><i class="bx bx-user"></i><span>Profile</span></a>
                             </li>
-                            <li><a class="dropdown-item" href="security"><i class="bx bx-cog"></i><span>Settings</span></a>
-                            </li>
+                            
 
                             <li>
                                 <div class="dropdown-divider mb-0"></div>
                             </li>
-                            <li><a class="dropdown-item" href="logout;"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+                            <li><a class="dropdown-item" href="logout"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
                             </li>
                         </ul>
                     </div>
@@ -3071,7 +3104,7 @@
                                                     <div>459</div>
                                                 </div>
                                                 <div class="terms">
-                                                    <p>This card is specially produced for Invest-card users. It is used as a virtual card. Invest-Card is an investment project.</p>
+                                                    <p>This card is specially produced for Ravers Trade users. It is used as a virtual card. Ravers Trade is an investment project.</p>
                                                     <p></p>
                                                 </div>
                                             </div>
@@ -3090,8 +3123,8 @@
                                     <div class="card-body">
                                         <div class="balances d-flex align-items-center">
                                             <div>
-                                                <p class="mb-0">LAST DEPOSIT</p>
-                                                <h5 class="mb-0">$0.00</h5>
+                                                <p class="mb-0">ACCOUNT BALANCE</p>
+                                                <h5 class="mb-0">$<?php echo $bal; ?></h5>
                                             </div>
                                             <div class="widgets-icons bg-white  ms-auto"><i class="bx bxs-wallet"></i>
                                             </div>
@@ -3107,8 +3140,8 @@
                                     <div class="card-body">
                                         <div class="balances d-flex align-items-center">
                                             <div>
-                                                <p class="mb-0">ACTIVE DEPOSITS</p>
-                                                <h5 class="mb-0">$0.00</h5>
+                                                <p class="mb-0">TOTAL WITHDRAWALS</p>
+                                                <h5 class="mb-0">$<?php echo $all_cashout; ?></h5>
                                             </div>
                                             <div class="widgets-icons  text-dark ms-auto"><i class="bx bx-line-chart-down"></i>
                                             </div>
@@ -3125,8 +3158,8 @@
                                     <div class="card-body">
                                         <div class="balances d-flex align-items-center">
                                             <div>
-                                                <p class="mb-0">TOTAL DEPOSITS</p>
-                                                <h5 class="mb-0">$0.00</h5>
+                                                <p class="mb-0">TOTAL REFERRAL BONUS</p>
+                                                <h5 class="mb-0">$<?php echo $user_ref_bonus; ?></h5>
                                             </div>
                                             <div class="widgets-icons  text-dark ms-auto"><i class="fadeIn animated bx bx-money"></i>
                                             </div>
@@ -3142,8 +3175,8 @@
                                     <div class="card-body">
                                         <div class="balances d-flex align-items-center">
                                             <div>
-                                                <p class="mb-0">EARNED TOTAL</p>
-                                                <h5 class="mb-0">$0.00</h5>
+                                                <p class="mb-0">COMPLETED INVESTMENT </p>
+                                                <h5 class="mb-0">$<?php echo $comp_invest_da; ?></h5>
                                             </div>
                                             <div class="widgets-icons  text-dark ms-auto"><i class="fadeIn animated bx bx-sort-up"></i>
                                             </div>
@@ -3159,8 +3192,8 @@
                                     <div class="card-body">
                                         <div class="balances d-flex align-items-center">
                                             <div>
-                                                <p class="mb-0">PENDING WITHDRAWALS</p>
-                                                <h5 class="mb-0">$0.00</h5>
+                                                <p class="mb-0">COMPLETED WITHDRAWALS </p>
+                                                <h5 class="mb-0">$<?php echo $all_cashout; ?></h5>
                                             </div>
                                             <div class="widgets-icons  text-dark ms-auto"><i class="fadeIn animated bx bx-analyse"></i>
                                             </div>
@@ -3177,7 +3210,7 @@
                                         <div class="balances d-flex align-items-center">
                                             <div>
                                                 <p class="mb-0">TOTAL WITHDRAWALS</p>
-                                                <h5 class="mb-0">$0.00</h5>
+                                                <h5 class="mb-0">$<?php echo $all_cashout; ?></h5>
                                             </div>
                                             <div class="widgets-icons  text-dark ms-auto"><i class="fadeIn animated bx bx-dollar-circle"></i>
                                             </div>
@@ -3252,223 +3285,12 @@
                                     <div class="h-header">
                                         <h4 class="text-black">Available <span>Balance</span></h4>
                                         <p class="mb-2 fs-12">With the balance you have earned, you can withdraw instantly, reinvest or send to another users.</p>
+                                  
+                                  
+                                        <h1 align='center'> $<?php echo $bal; ?>  <img src="account_files/btc.svg" alt=""> </h1>
                                     </div>
                                 </div>
-                                <div class="row match-height">
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/btc.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/eth.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4 ">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/trx.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/bnb.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/usdt.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/ltc.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/doge.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/xrp.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/dash.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/bch.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/epaycore.png" style="width:32px ;" alt="E-Paycore">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/pm.svg" style="width:32px ;" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/xml.svg" style="width:32px ;" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-xl-3 col-md-4">
-                                        <div class="card radius-10">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="coindollar">
-                                                        <h4 class="my-1">$ 0.00</h4>
-                                                    </div>
-                                                    <div class="coinimg ms-auto">
-                                                        <img src="account_files/chz.svg" style="width:32px;" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -3482,7 +3304,7 @@
         <!--Start Back To Top Button--><a href="javascript:;" class="back-to-top "><i class="bx bxs-up-arrow-alt"></i></a>
         <!--End Back To Top Button-->
         <footer class="page-footer ">
-            <p class="mb-0 ">Copyright © 2021 <span class="footertext2">Invest-Card</span>. All right reserved.</p>
+            <p class="mb-0 ">Copyright © 2021 <span class="footertext2">Ravers Trade</span>. All right reserved.</p>
         </footer>
     </div>
     <!--end wrapper-->

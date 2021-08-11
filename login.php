@@ -1,3 +1,46 @@
+<?php include('settings.php');
+
+if (isset($_POST['log_btn'])) {
+
+	$email2 = addslashes(htmlentities($_POST['email']));
+	$password = addslashes(htmlentities($_POST['password']));
+
+	$query = "SELECT * from users WHERE (user_email ='$email2' or user_name ='$email2' ) AND user_password ='$password' ";
+
+	$query_run  = new run_query($query);
+	if ($query_run->num_rows >= 1) {
+		$data =   $query_run->result();
+		extract($data);
+
+		if ($user_status === 'blocked') {
+
+			echo "<script>alert(\"Dear User Your Account is Blocked!!!\"); window.location.replace(\"index.php\"); </script>";
+		} else if ($user_status == 'Not_Active') {
+
+
+			echo "<script>alert(\"Dear User Your Account is Not Active!!!\"); window.location.replace(\"index.php\"); </script>";
+		} else if ($user_status == 'pending') {
+
+
+			echo "<script>alert(\"Dear User Your Account is Pending!!!\"); window.location.replace(\"index.php\"); </script>";
+		} else  if ($user_status == 'Active') {
+			$_SESSION['user_id'] = $user_id;
+
+			echo "<script> window.location.replace(\"account\"); </script>";
+		}
+	} else {
+
+		echo "<script>alert(\"Invalid Email or Password Please Try Again!!\"); window.location.replace(\"index.php\"); </script>";
+	}
+}
+
+
+?>
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -31,21 +74,7 @@
 
 <body class="bg-login">
 
-	<script language=javascript>
-		function checkform() {
-			if (document.mainform.username.value == '') {
-				alert("Please type your username!");
-				document.mainform.username.focus();
-				return false;
-			}
-			if (document.mainform.password.value == '') {
-				alert("Please type your password!");
-				document.mainform.password.focus();
-				return false;
-			}
-			return true;
-		}
-	</script>
+	
 
 
 	<br><br>
@@ -73,13 +102,11 @@
 										<hr />
 									</div>
 									<div class="form-body">
-										<form method=post name=mainform onsubmit="return checkform()" class="row g-3"><input type="hidden" name="form_id" value="16281636932616"><input type="hidden" name="form_token" value="3b4e4a54e2418639be2c945ef4307715">
-											<input type=hidden name=a value='do_login'>
-											<input type=hidden name=follow value=''>
-											<input type=hidden name=follow_id value=''>
+										<form method=post class="row g-3">
+										
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Login Name</label>
-												<input type=text name=username value='' class="form-control" id="inputEmailAddress" placeholder="Username" autofocus="autofocus" required>
+												<input type=text name=email value='' class="form-control" id="inputEmailAddress" placeholder="Username OR Email" autofocus="autofocus" required>
 											</div>
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Enter Password</label>
@@ -89,30 +116,11 @@
 												</div>
 											</div>
 
-
-
-											<style>
-												div.g-recaptcha {
-													margin: 0 auto;
-													width: 304px;
-													padding: 5px;
-												}
-											</style>
-											<script src='../www.google.com/recaptcha/api.js'></script>
-											<tr>
-												<td class=menutxt colspan=2>
-													<div class="g-recaptcha" data-sitekey="6LeJaJsbAAAAAA1SHUbpSZ0SJinMUvL6oahRHgwQ"></div>
-												</td>
-											</tr>
-
-
-
-
 											<div class="col-md-6 text-end"> <a href="password_recovery.php">Forgot Password ?</a>
 											</div>
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
+													<button type="submit" class="btn btn-primary" name="log_btn"><i class="bx bxs-lock-open"></i>Sign in</button>
 												</div>
 											</div>
 										</form>
