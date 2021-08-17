@@ -1,45 +1,45 @@
-<?php include('settings.php'); 
+<?php include('settings.php');
 
 
-if( !loggedin() ){
+if (!loggedin()) {
 
     echo "<script> window.location.replace(\"login.php\"); </script>";
-  }
+}
 
 
 
 
 
-  include('data.php');
+include('data.php');
 
 
 
 $total_cashout = new run_query("select sum(trant_amt) as total_cash_out from transaction where  tran_desc ='CASH_OUT'   and tran_user_id='$user_id'  ");
-								$total_cashout_data =	$total_cashout->result();
-							extract($total_cashout_data );
-				$all_cashout = 		$total_cash_out;			
-			
-			
-			
-				$total_deposit = new run_query("select sum(trant_amt) as total_deposit_ from transaction where  tran_desc ='DEPOSIT' and tran_status='CONFIRMED' and tran_user_id='$user_id'  ");
-								$total_deposit_data =	$total_deposit->result();
-							extract($total_deposit_data );
-			$all_deposit = 		$total_deposit_ ;	
+$total_cashout_data =    $total_cashout->result();
+extract($total_cashout_data);
+$all_cashout =         $total_cash_out;
 
 
 
-			$pending_invest = new run_query("select sum(trant_amt) as pending_invest from transaction where  tran_desc ='INVESTMENT' and tran_status='ACTIVE' and tran_user_id='$user_id'  ");
-								$pending_invest_d =	$pending_invest->result();
-							extract($pending_invest_d );
-			$pending_invest_da = 		$pending_invest ;
+$total_deposit = new run_query("select sum(trant_amt) as total_deposit_ from transaction where  tran_desc ='DEPOSIT' and tran_status='CONFIRMED' and tran_user_id='$user_id'  ");
+$total_deposit_data =    $total_deposit->result();
+extract($total_deposit_data);
+$all_deposit =         $total_deposit_;
 
 
-			$co_invest = new run_query("select sum(trant_amt) as co_invest from transaction where  tran_desc ='INVESTMENT'  and tran_user_id='$user_id'  ");
-								$co_invest_c =	$co_invest->result();
-							extract($co_invest_c );
-			$comp_invest_da = 		$co_invest ;
 
-		
+$pending_invest = new run_query("select sum(trant_amt) as pending_invest from transaction where  tran_desc ='INVESTMENT' and tran_status='ACTIVE' and tran_user_id='$user_id'  ");
+$pending_invest_d =    $pending_invest->result();
+extract($pending_invest_d);
+$pending_invest_da =         $pending_invest;
+
+
+$co_invest = new run_query("select sum(trant_amt) as co_invest from transaction where  tran_desc ='INVESTMENT'  and tran_user_id='$user_id'  ");
+$co_invest_c =    $co_invest->result();
+extract($co_invest_c);
+$comp_invest_da =         $co_invest;
+
+
 
 ?>
 
@@ -74,8 +74,12 @@ $total_cashout = new run_query("select sum(trant_amt) as total_cash_out from tra
     <link rel="stylesheet" href="account_files/header-colors.css">
     <link rel="stylesheet" href="account_files/card.css">
 
-    <link href="account_files/sweetalert2.css" rel="stylesheet">
-    <script src="account_files/sweetalert2.js"></script>
+   
+  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
+    <link href="assets/css/icons.css" rel="stylesheet">
+    
     <style>
         .swal2-popup.swal2-toast {
             flex-direction: row;
@@ -2460,7 +2464,16 @@ $total_cashout = new run_query("select sum(trant_amt) as total_cash_out from tra
                                             <div class="menu-title">INVESTMENTS</div>
                                         </a>
                                     </li>
-                                   
+
+
+                                    <li>
+                                        <a href="edit_account" aria-expanded="true">
+                                            <div class="parent-icon"><i class="bx bx-user"></i>
+                                            </div>
+                                            <div class="menu-title">PROFILE</div>
+                                        </a>
+                                    </li>
+
 
                                     <li class="menu-label">AFFILIATE PROGRAM</li>
                                     <li>
@@ -2470,8 +2483,8 @@ $total_cashout = new run_query("select sum(trant_amt) as total_cash_out from tra
                                             <div class="menu-title">REFERRALS</div>
                                         </a>
                                     </li>
-                                  
-                                 
+
+
                                     <hr>
                                     <li>
                                         <a href="logout" aria-expanded="true">
@@ -3005,7 +3018,7 @@ $total_cashout = new run_query("select sum(trant_amt) as total_cash_out from tra
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="edit_account"><i class="bx bx-user"></i><span>Profile</span></a>
                             </li>
-                            
+
 
                             <li>
                                 <div class="dropdown-divider mb-0"></div>
@@ -3051,70 +3064,7 @@ $total_cashout = new run_query("select sum(trant_amt) as total_cash_out from tra
         <div class="page-wrapper">
             <div class="page-content">
                 <div class="row match-height">
-                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 ">
-                        <div class="row">
 
-                            <div class="col">
-                                <div class="card cardmain" style="background-color:transparent; box-shadow:none;">
-
-                                    <div class="card2">
-                                        <div class="flip">
-                                            <div class="front">
-                                                <div class="strip-bottom"></div>
-                                                <div class="strip-top"></div>
-                                                <svg class="logo" width="80" height="80" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.03 16.01">
-                                                    <path d="M6.33,13.17H2.79a.43.43,0,1,0,0,.86h.4a.43.43,0,0,1,.43.43.44.44,0,0,1-.43.44h-1a.43.43,0,0,0,0,.86H6.33a.43.43,0,0,0,.43-.43V13.6A.43.43,0,0,0,6.33,13.17Z" transform="translate(-0.98 -11.99)" fill="#e53a11"></path>
-                                                    <path d="M6.33,16.6H1.42a.43.43,0,1,0,0,.86H3.47a.44.44,0,0,1,0,.87H3.08a.43.43,0,0,0,0,.86h.1a.43.43,0,0,1,.43.43.44.44,0,0,1-.43.44H2.1a.43.43,0,0,0,0,.86h.43a.43.43,0,1,1,0,.86H1.42a.44.44,0,1,0,0,.87H2.91a.43.43,0,0,1,0,.86H1.85a.44.44,0,0,0,0,.87H6.33a.44.44,0,0,0,.43-.44V17A.43.43,0,0,0,6.33,16.6Z" transform="translate(-0.98 -11.99)" fill="#e53a11"></path><text transform="translate(5.87 12.47)" font-size="13.33" fill="#e53a11" font-family="CooperBlack, Cooper Black">N</text><text transform="translate(16.53 12.33) scale(0.71 1)" font-size="14.7" fill="#f4f2f2" font-family="CooperBlack, Cooper Black">
-                                                        <tspan letter-spacing="-0.03em">v</tspan>
-                                                        <tspan x="8.76" y="0">e</tspan>
-                                                        <tspan x="16.55" y="0" letter-spacing="0em">s</tspan>
-                                                        <tspan x="23.6" y="0">t</tspan>
-                                                    </text><text transform="translate(6.71 3.35)" font-size="3" fill="#f4f2f2" font-family="CooperBlack, Cooper Black" letter-spacing="-0.01em">C<tspan x="2.13" y="0" letter-spacing="0em">ARD</tspan></text>
-                                                </svg>
-                                                <div class="investor">Investor</div>
-                                                <div class="chip">
-                                                    <div class="chip-line"></div>
-                                                    <div class="chip-line"></div>
-                                                    <div class="chip-line"></div>
-                                                    <div class="chip-line"></div>
-                                                    <div class="chip-main"></div>
-                                                </div>
-                                                <svg class="wave" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787" fill="white">
-                                                    <path d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z"></path>
-                                                    <path d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z"></path>
-                                                    <path d="M7.584 11.438c.227.031.438.144.594.312 2.953 2.863 4.781 6.875 4.781 11.313 0 4.433-1.828 8.449-4.781 11.312-.398.387-1.035.383-1.422-.016-.387-.398-.383-1.035.016-1.421 2.582-2.504 4.187-5.993 4.187-9.875 0-3.883-1.605-7.372-4.187-9.875-.321-.282-.426-.739-.266-1.133.164-.395.559-.641.984-.617h.094zM1.178 15.531c.121.02.238.063.344.125 2.633 1.414 4.437 4.215 4.437 7.407 0 3.195-1.797 5.996-4.437 7.406-.492.258-1.102.07-1.36-.422-.257-.492-.07-1.102.422-1.359 2.012-1.075 3.375-3.176 3.375-5.625 0-2.446-1.371-4.551-3.375-5.625-.441-.204-.676-.692-.551-1.165.122-.468.567-.785 1.051-.742h.094z"></path>
-                                                </svg>
-                                                <div class="card-number">
-                                                    <div class="section">4133</div>
-                                                    <div class="section">21**</div>
-                                                    <div class="section">****</div>
-                                                    <div class="section">1816</div>
-                                                </div>
-                                                <div class="end"><span class="end-text">exp. end:</span><span class="end-date">04/29</span></div>
-                                                <div class="card-holder">mr Asa</div>
-                                                <div class="master">
-                                                    <div class="circle master-red"></div>
-                                                    <div class="circle master-yellow"></div>
-                                                </div>
-                                            </div>
-                                            <div class="back">
-                                                <div class="strip-black"></div>
-                                                <div class="ccv">
-                                                    <label>ccv</label>
-                                                    <div>459</div>
-                                                </div>
-                                                <div class="terms">
-                                                    <p>This card is specially produced for Ravers Trade users. It is used as a virtual card. Ravers Trade is an investment project.</p>
-                                                    <p></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
                         <div class="row match-height row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">
@@ -3225,78 +3175,275 @@ $total_cashout = new run_query("select sum(trant_amt) as total_cash_out from tra
                         </div>
                     </div>
 
-                </div>
-                <div class="row  match-height">
+
                     <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-header mb-4">
-                                    <div class="h-header">
-                                        <h4 class="text-black">Internal <span>Transfer</span></h4>
-                                        <p class="mb-2 fs-12">Send Balance to Any Friend You Want. Transaction Fee 2%</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="labelhead d-flex" style="margin-top: 10px;">
-                                        <label class="form-label">Transfer Amount</label>
-                                        <span class="desc" style="font-size: 13px; 
-                                        color: #999999;
-                                        margin-left: 15px;">minimum value "1 USD"</span>
-                                    </div>
 
-
-                                    <form method="post"><input type="hidden" name="form_id" value="16281795488471"><input type="hidden" name="form_token" value="934e80853720b5e2154ba10d3f87daee">
-                                        <input type="hidden" name="a" value="internal_transfer">
-                                        <input type="hidden" name="action" value="preview">
-                                        <input type="hidden" name="say" value="">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">$</span>
-                                            <input type="text" name="amount" class="form-control" aria-label="Amount" value="5.00">
-
-                                            <select name="ec" class="form-select" id="ec">
-
-
-
-
-
-
-
-                                            </select>
-                                        </div>
-                                        <div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">#</span>
-                                            <input type="text" name="account" class="form-control" placeholder="To Username " aria-label="To Username" aria-describedby="basic-addon1">
-                                        </div>
-                                        <div class="input-group"> <span class="input-group-text">Your comment</span>
-                                            <textarea name="comment" your="" comment="" class="form-control" aria-label="With textarea"></textarea>
-                                        </div>
-                                        <div class="col mt-4 justify-content-center align-items-center text-center">
-                                            <button type="submit" class="btn btn-primary px-5 radius-30">Send</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
                         <div class="card radius-10 w-100">
                             <div class="card-body">
                                 <div class="card-header mb-3">
                                     <div class="h-header">
                                         <h4 class="text-black">Available <span>Balance</span></h4>
                                         <p class="mb-2 fs-12">With the balance you have earned, you can withdraw instantly, reinvest or send to another users.</p>
-                                  
-                                  
-                                        <h1 align='center'> $<?php echo $bal; ?>  <img src="account_files/btc.svg" alt=""> </h1>
+
+
+                                        <h1 align='center'> $<?php echo $bal; ?> <img src="account_files/btc.svg" alt=""> </h1>
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <br><br><br>
+
+                <div class="row match-height">
+
+                    <div class="col-lg-12 col-md-12">
+                        <h4 class="card-title">Deposit History</h4>
+                        <h6 class="card-subtitle"></h6>
+                        <div class="table-responsive mt-40">
+                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>S/N</td>
+                                        <th>Amount ($)</th>
+                                        <th>Coin Equ.</th>
+                                        <th>Coin</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php
+                                    $deposite_tran = new run_query("select * from transaction where tran_email = '$user_email' and tran_desc ='DEPOSIT'  order by tran_id desc ");
+                                    $no = 1;
+                                    while ($deposite_tran_data =    $deposite_tran->result()) {
+
+                                        extract($deposite_tran_data);
+
+                                        echo "
+
+    
+
+<tr>
+<td>$no</td>
+<td> $ $trant_amt</td>
+<td> $coin_amt</td>
+<td> $coin</td>
+<td>
+<span class='badge badge-danger'>$tran_status</span>
+</td>
+<td><a href='#!' class='btn btn-sm btn-primary' data-toggle='tooltip' title='Transaction Hash ID: $hash_id'><i class='fa fa-eye'></i></a></td>
+</tr>
+    
+    ";
+                                        $no++;
+                                    }
+
+
+                                    ?>
+
+
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>S/N</td>
+                                        <th>Amount ($)</th>
+                                        <th>Coin Equ.</th>
+                                        <th>Coin</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+<br><br>
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                        <h4 class="card-title">Your Investments </h4>
+
+
+                            <div class="table-responsive mt-40">
+                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>S/N</td>
+                                            <th>Investment Ref</th>
+                                            <th>Action</th>
+                                            <th>Amount</th>
+                                            <th>Daily Growth</th>
+                                            <th>Expiry Date </th>
+                                            <th> Duration </th>
+                                            <th>Expected Profit($)</th>
+                                            <th>Status</th>
+                                        </tr>
+
+
+                                    </thead>
+                                    <tbody>
+
+
+                                        <?php
+                                        $deposite_tran = new run_query("select * from transaction where tran_user_id = '$user_id' and tran_desc ='INVESTMENT'  order by tran_id desc  ");
+                                        $no = 1;
+                                        while ($deposite_tran_data =    $deposite_tran->result()) {
+
+                                            extract($deposite_tran_data);
+
+                                            $t1 = strtotime($start_tran_date);
+                                            $t2 = strtotime($reg_Date);
+                                            $diff = $t2 - $t1;
+                                            $days_online_d =  $diff  / 86400;
+                                            $duration = round($days_online_d);
+                                            $tran_current_bal_u  = ($duration *  $tran_daily_growth) - $tran_withdraw_amt;
+
+                                            $tran_current_bal_u =  number_format($tran_current_bal_u, 4);
+                                            if ($duration >= 30) {
+                                                $tran_current_bal_u  = (30 *  $tran_daily_growth) - $tran_withdraw_amt;
+                                            }
+                                            if (($duration >= 30  && $tran_current_bal_u > 0 && $tran_status == 'ACTIVE') or ($duration >= 30  && $tran_current_bal_u > 0)) {
+                                                $btn = "<br/> <form method='POST'>  
+								
+									<button type='submit'  name='cash_out$tran_id' class='btn btn-sm btn-success' >Withdraw</button> 
+									<input type='hidden' name='coin$tran_id' required value='BTC' />
+								</form>";
+                                            } else {
+
+                                                $btn = "<br/><button  class='btn btn-sm btn-outline-danger' disabled > <b>WITHDRAW </b> </button>";
+                                            }
+
+                                            if ($tran_status == 'ACTIVE'  or $tran_status == 'ACTIVE2') {
+                                                $tran_status = "In Progress";
+                                            }
+
+                                            if ($duration >= 30) {
+                                                $tran_current_bal_u  = (30 *  $tran_daily_growth) - $tran_withdraw_amt;
+                                                $tran_status = "Expired";
+                                                $duration = "Expired";
+                                            }
+                                            echo "
+								
+							<tr>
+								<td>$no</td>
+								<th>$tran_invoice</th>
+								<th>$$tran_current_bal_u  $btn  </th>
+								
+								<th>$$trant_amt</th>
+								<th>$ $tran_daily_growth</th>
+
+								<th>$tran_exp_date</th>
+								<th>$duration Days</th>
+
+								<th>$$tran_roi</th>
+								<th><span class='badge badge-primary'><i class='fa fa-spinner'></i> $tran_status</span> </th>
+								</tr>	
+								
+								";
+                                            $no++;
+
+
+                                            if (isset($_POST['cash_out' . $tran_id])) {
+                                                $coin = addslashes(htmlentities($_POST['coin' . $tran_id]));
+
+                                                $qw1RRqq = new run_query("UPDATE   `transaction`  set  tran_withdraw_amt=tran_withdraw_amt+$tran_current_bal_u , tran_status='ACTIVE2' where  tran_id ='$tran_id' ");
+
+                                                $timer_end  = date('Y-m-d H:i:s', strtotime('48 hours'));
+                                                $timer_start  = date('Y-m-d H:i:s');
+                                                $tran_invoice  = "WIT-" . date('iYdmhs');
+                                                $cash_out = new run_query("INSERT INTO    `transaction`  set coin='$coin',  tran_user_id = '$user_id', tran_invoice='$tran_invoice',
+							tran_email='$user_email', tran_username='$user_name', trant_amt='$tran_current_bal_u',start_tran_date='$timer_start', tran_exp_date='$timer_end',  tran_date='$reg_Date', tran_status='PENDING', tran_desc ='CASH_OUT' ");
+
+                                                $email_amt = $trant_amt;
+
+
+
+                                                $site_email_send = "$site_email";
+                                                $welcome_email_subject = "Withdrawal of - $ $trant_amt | $site_name";
+                                                $welcome_email_headers .= "Content-type:text/html;charset=UTF-8 \r\n";
+                                                $welcome_email_headers .= "From: $site_name";
+
+
+                                                $welcome_email_body = "
+								
+									<html>
+									<head>
+										<title> Hello $user_name, </title>
+									</head>
+									<body>
+									 <b>Hello, $user_name<b> <br/> Hope we meet you well.
+									<h2> You Have Requested for the withdrwal  of $ $trant_amt  </h2>
+									Please Relax as we Processed this Transaction <br/>
+									
+									<hr/>
+									For enquiries, <br/>
+									Contact us on <br/>
+								
+									<b>
+									$site_email <br/>
+								
+									$site_phone <br/>
+									</b>
+									Visit us on <br/>
+								
+									https://$site_link <br/><br/><br/>
+								
+									Regards,  $site_name.
+									</body>
+									</html>
+								
+									";
+
+                                                mail($user_email, $welcome_email_subject, $welcome_email_body, $welcome_email_headers);
+
+                                                echo "<script>alert(\"TRANSACTION WITHDRAW REQUEST SUCCESSFULL!!! \");</script>";
+
+                                                echo "<script>window.location.replace(\"withdrawals.php\");</script>";
+                                            }
+                                        }
+
+                                        ?>
+
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td>S/N</td>
+                                            <th>Investment Ref</th>
+                                            <th>Action</th>
+                                            <th>Amount</th>
+                                            <th>Daily Growth</th>
+                                            <th>Expiry Date </th>
+                                            <th> Duration </th>
+                                            <th>Expected Profit($)</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
             </div>
         </div>
+
+
+
+
         <!--end page wrapper -->
         <!--start overlay-->
         <div class="overlay toggle-icon "></div>

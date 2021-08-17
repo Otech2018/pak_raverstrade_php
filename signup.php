@@ -1,5 +1,17 @@
 <?php include('settings.php');
 
+require_once 'vendor/autoload.php';
+
+
+// Create the Transport
+$transport = (new Swift_SmtpTransport('smtp.raverstrade.com', 25))
+  ->setUsername($site_email)
+  ->setPassword($site_email_pw)
+;
+
+// Create the Mailer using your created Transport
+$mailer = new Swift_Mailer($transport);
+
 
 if (isset($_POST['reg_btn'])) {
 
@@ -113,7 +125,18 @@ best Regards,  $site_name.
 
 ";
 
-					mail($email, $welcome_email_subject, $welcome_email_body, $welcome_email_headers);
+
+// Create a message
+$message = (new Swift_Message($welcome_email_subject))
+  ->setFrom([$site_email => $site_name])
+  ->setTo($email)
+  ->setBody($welcome_email_body)
+  ;
+
+// Send the message
+$result = $mailer->send($message);
+
+					// mail($email, $welcome_email_subject, $welcome_email_body, $welcome_email_headers);
 
 
 

@@ -1,6 +1,4 @@
-
-<?php include('settings.php'); 
-?>
+<?php include('settings.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,14 +40,7 @@
 
 <body>
     <!--============= ScrollToTop Section Starts Here =============-->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
+   
     <a href="#0" class="scrollToTop"><i class="fas fa-angle-up"></i></a>
     <div class="overlay"></div>
     <!--============= ScrollToTop Section Ends Here =============-->
@@ -70,12 +61,13 @@
             <div class="row align-items-center">
                 <div class="col-xl-8 col-lg-6">
                     <div class="banner-content-1 cl-white">
-                        <h3 class="title">Daily Guaranteed Earnings.<br> <span class="typewrite" data-period="2000" data-type='[ "More than", "Digital Platform"]'></span></h3>
+                        <h3 class="title">Earn Upto 5.5% Daily & Upto 65% Monthly.<br> <span class="typewrite" data-period="2000" data-type='[ "More than", "Digital Platform"]'></span></h3>
                         <p>
-                            Use our Investment plan and get up to 240% Return.
+                            Use our Investment plan and get up to 65% in 30 Days.
                         </p>
                         <div class="banner-button-group">
-                            <a href="signup.php" class="button-4 active">Get Started</a>
+                            <a href="signup.php" class="button-4 active">Register</a>
+                            <a href="login.php" class="button-4 active">Login</a>
                         </div>
                     </div>
                 </div>
@@ -94,10 +86,12 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
     </section>
+    <h3 align='center'>Real time Price  1BTC = $<?=number_format(btc_usd(1));?></h3>
 
     <section class="how-section-two oh pos-rel mt-max-lg-0" id="aboutus">
         <div class="how-main-bg "></div>
@@ -118,18 +112,11 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <a href="https://www.youtube.com/watch?v=uMU9bwHxKVM" class="feature-video-area popup">
+                    <!-- <a href="https://www.youtube.com/watch?v=uMU9bwHxKVM" class="feature-video-area popup"> -->
                         <div class="thumb">
                             <img src="cardstyles/images/feature/pro-main.png" style="max-width:600px;" alt="feature">
                         </div>
-                        <div class="button-area">
-                            <h4 class="title">
-                                Presentation Video
-                            </h4>
-                            <div class="video-button">
-                                <i class="flaticon-play"></i>
-                            </div>
-                        </div>
+                       
                     </a>
                 </div>
             </div>
@@ -187,120 +174,38 @@
         </div>
         <div class="container">
             <div class="tab-up">
-                <h2 style="text-align: center;">Our Investment Plans</h2>
+                <h2 style="text-align: center;">Our Investment Plan</h2>
                 <div class="tab-area mb-sm-4">
                     <div class="tab-item active">
                         <div class="pricing-area-16">
                             <div class="pricing-item-16">
-                                <div class="pricing-header">
-
-                                    <h5 class="subtitle">Lite</h5>
-                                </div>
-                                <ul>
-                                    <li>1.5% Daily for 20 days</li>
-                                    <li>Total profit: 130%
-                                    </li>
-                                    <li>Deposit return after 20 days</li>
-                                    <li>24/7 Support</li>
-
-                                </ul>
-                                <h2 class="title"><sup>$</sup>10</h2>
-                                <h2 class="title"><sup>$</sup>1999.9</h2>
-                                <a href="signup.php" class="button-4 active">Start free trial</a>
+                                
+                              
+                               
                             </div>
                             <div class="pricing-item-16 active">
-                                <div class="price-tags">Popular</div>
-                                <div class="pricing-header">
-
-                                    <h5 class="subtitle">Pro</h5>
-                                </div>
+                                
                                 <ul>
-                                    <li>2.5% Daily for 30 days</li>
-                                    <li>Total profit: 175%
+                                    <li>5.5% Daily for 30 days</li>
+                                    <li>Total profit: <br/> <br> <h2>165%</h2>
                                     </li>
-                                    <li>Deposit return after 30 days</li>
+                                    <li>Minimum Investment $100</li>
+                                    <li>Maximium Investment $10,000</li>
 
                                     <li>24/7 Support</li>
 
                                 </ul>
-                                <h2 class="title"><sup>$</sup>2000</h2>
-                                <h2 class="title"><sup>$</sup>9999.9</h2>
-                                <a href="signup.php" class="button-4 active">Start free trial</a>
+                                
                             </div>
                             <div class="pricing-item-16">
-                                <div class="pricing-header">
-
-                                    <h5 class="subtitle">Expert</h5>
-                                </div>
-                                <ul>
-                                    <li>3.5% Daily for 40 days</li>
-                                    <li>Total profit: 240%
-                                    </li>
-                                    <li>Deposit return after 40 days</li>
-
-                                    <li>24/7 Support</li>
-
-                                </ul>
-                                <h2 class="title"><sup>$</sup>10000</h2>
-                                <h2 class="title"><sup>$</sup>50000</h2>
-                                <a href="signup.php" class="button-4 active">Start free trial</a>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="calc">
-                <h2>Investment Calculator</h2>
-                <div class="calc__inner colasterr">
-                    <div class="calc__left">
-                        <p>Select Plan</p>
-                        <div class="calc__plan">
-
-                            <input type="radio" id="calc_plan1" name="calc_plan" value="1">
-                            <label for="calc_plan1" class="calc_radio">1.5% for 20 Days</label>
-
-                            <input type="radio" id="calc_plan2" name="calc_plan" value="2" checked>
-                            <label for="calc_plan2" class="calc_radio">2.5% for 30 Days
-                            </label>
-
-                            <input type="radio" id="calc_plan3" name="calc_plan" value="3">
-                            <label for="calc_plan3" class="calc_radio">3.5% for 40 Days
-                            </label>
-                        </div>
-
-                        <p>Investment Amount</p>
-                        <div class="calc__item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <input type="text" min="10" max="50000" id="inv_amount_r" value="500">
-                            <div class="calc__slider ">
-
-                                <input class="slider" id="inv_amount" type="range" step="1" min="10" max="50000" value="500" />
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="calc__right">
-                        <div class="calc__item result">
-                            <lebel>Daily percent: </lebel>
-                            <input id="assign_per" type="text" value="100" readonly="" />
-                        </div>
-
-                        <div class="calc__item result">
-                            <lebel>Daily earning:</lebel>
-                            <input id="net_profit" type="text" value="100" readonly="" />
-                        </div>
-
-                        <div class="calc__item result">
-                            <lebel>Total Return:</lebel>
-                            <input id="total_return" type="text" value="100" readonly="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+          
     </section>
 
 
@@ -316,112 +221,54 @@
 
                 <div class="col-xl-6 col-lg-6 col-md-6 colaster m-2">
                     <h4>Last Deposit</h4>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Durma****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $397.76</div>
-                        <div class="stat__item-col"><img src="assets/icons/79d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Quake****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $523.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Retto****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $10.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/85d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> alire****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $20.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Tiana****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $10.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> PINAR****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $311.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/94d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> cagla****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $300.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/92d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> monit****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $300.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> LaLaK****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $200.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Maraz****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-down" style="color:#21ba72"></i> $7371.39</div>
-                        <div class="stat__item-col"><img src="assets/icons/48d.svg" width="25"></div>
-                    </div>
+                    
+                    <?php 
+             $stat = new run_query( "select * from stat where type='dep'  order by id desc limit 50 " );
+             while ($stat_data =   $stat->result() ){
+                extract($stat_data);
+                echo " 
+                <div class='stat__item'>
+                <div class='stat__item-col'> $dname </div>
+                <div class='stat__item-col'><i class='fas fa-caret-down' style='color:#21ba72'></i> $ $amt</div>
+                <div class='stat__item-col'><img src='assets/icons/48d.svg' width='25'></div>
+                </div>
+
+
+
+                 ";
+                
+                }
+
+
+            ?>      
+                   
                 </div>
 
 
 
                 <div class="col-xl-6 col-lg-6 col-md-6 colaster m-2">
                     <h4>Last Withdrawal</h4>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Motor****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $1.57</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Range****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $3.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Cevii****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $11.43</div>
-                        <div class="stat__item-col"><img src="assets/icons/92d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> domos****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $3.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> seain****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $15.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/92d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Omera****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $10.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/92d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Burge****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $1.50</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> Damil****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $1.05</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> N2020****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $1.00</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
-                    <div class="stat__item">
-                        <div class="stat__item-col"> olgak****</div>
-                        <div class="stat__item-col"><i class="fas fa-caret-up" style="color:red"></i> $1.05</div>
-                        <div class="stat__item-col"><img src="assets/icons/18d.svg" width="25"></div>
-                    </div>
+
+                    <?php 
+             $stat = new run_query( "select * from stat where type='with'  order by id desc limit 50 " );
+             while ($stat_data =   $stat->result() ){
+                extract($stat_data);
+                echo " 
+                <div class='stat__item'>
+                <div class='stat__item-col'> $dname </div>
+                <div class='stat__item-col'><i class='fas fa-caret-down' style='color:#21ba72'></i> $ $amt</div>
+                <div class='stat__item-col'><img src='assets/icons/48d.svg' width='25'></div>
+                </div>
+
+
+
+                 ";
+                
+                }
+
+
+            ?>   
+                  
                 </div>
             </div>
         </div>
@@ -535,11 +382,6 @@
                 </div>
                 <ul class="social-icons">
 
-
-                   
-                    <li>
-                        <a href="<?=$site_whatsapp;?>"><i class="fab fa-whatsapp"></i></a>
-                    </li>
                     <li>
                         <a href="<?=$site_telegram;?>"><i class="fab fa-telegram"></i></a>
                     </li>

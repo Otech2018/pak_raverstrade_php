@@ -5,7 +5,8 @@
 $site_name ="RaversTrade";
 $site_link ="raverstrade.com";
 $site_email ="admin@raverstrade.com";
-$site_address ="no 6 Tecnopoy Road London";
+$site_email_pw ='password@2021';
+$site_address ="";
 $site_phone ="+44 7520 633267";
 $site_telegram ="https://t.me/joinchat/FCCom-wmNEu7H9Ad";
 $site_whatsapp ="https://wa.me/joinchat/FCCom-dghhgf";
@@ -34,9 +35,14 @@ class connect{
 	public  $host = 'localhost';
 		
 			
+	// public  $username = 'frankchris_raverstrade';
+    //    public  $password = 'raverstrade';
+	// public  $db = 'frankchris_raverstrade';			
+	
+	
 	public  $username = 'ben';
        public  $password = '1991';
-	public  $db = 'bitwave_db';						
+	public  $db = 'bitwave_db';		
 		
 	}
 	

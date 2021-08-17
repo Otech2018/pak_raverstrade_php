@@ -47,13 +47,12 @@ require "header_admin.php";
 if( isset($_POST['update_settings'])  ){
 	
 	
-						$total_deposit_manipulation = addslashes(htmlentities($_POST['total_deposit_manipulation']));
-						$total_cashout_manipulation = addslashes(htmlentities($_POST['total_cashout_manipulation']));
-						$last_deposit_manipulation = addslashes(htmlentities($_POST['last_deposit_manipulation']));
-						$last_cashout_manipulation = addslashes(htmlentities($_POST['last_cashout_manipulation']));
+						$type = addslashes(htmlentities($_POST['type']));
+						$amt = addslashes(htmlentities($_POST['amt']));
+						$dname = addslashes(htmlentities($_POST['dname']));
 						
-					$query121e =  new run_query( "UPDATE `settings` SET total_deposit_manipulation='$total_deposit_manipulation', total_cashout_manipulation='$total_cashout_manipulation', last_deposit_manipulation='$last_deposit_manipulation', last_cashout_manipulation='$last_cashout_manipulation'   where id = 1 ") ;
-						 echo "<script>alert(\" SETTINGS SAVED!!! \");</script>"; 
+					$query121e =  new run_query( "INSERT INTO `stat` set dname='$dname', amt='$amt', type='$type' ") ;
+						 echo "<script>alert(\"  SAVED!!! \");</script>"; 
 					  echo "<script>window.location.replace(\"admin_dash.php\");</script>"; 
 
 				}
@@ -82,27 +81,36 @@ if( isset($_POST['update_settings'])  ){
 		 <div class="card z-depth-4 deep-orange-text">
             <div class="card-content">
               <h2 align="center" style="color:#ff5722;">
-			  <br/><b>	SETTINGS</b></h2>
+			  <br/><b>	Last Withdrwal </b></h2>
             <div class="row" style="margin:-5px;">
         <div class="input-field col s12">
-          <input id="email" type="number" class="validate" required="required" name="total_deposit_manipulation"  value="<?php echo $total_deposit_manipulation; ?>" />
-            <label for="email" data-error="wrong" data-success="right"><i class="fa fa-envelope"></i> TOTAL DEPOSIT  </label>
+          <input id="email" type="text" class="validate" required="required" name="dname"   />
+            <label for="email" data-error="wrong" data-success="right"><i class="fa fa-envelope"></i> Name  </label>
         </div>
       </div>
 
 
 	<div class="row" style="margin:-5px;">
         <div class="input-field col s12">
-          <input id="email" type="number" class="validate" required="required" name="total_cashout_manipulation"  value="<?php echo $total_cashout_manipulation; ?>"   />
-            <label for="email" data-error="wrong" data-success="right"><i class="fa fa-lock"></i> TOTAL CASH OUT </label>
+          <input id="email" type="number" class="validate" required="required" name="amt"  />
+            <label for="email" data-error="wrong" data-success="right"><i class="fa fa-lock"></i> Amt </label>
         </div>
       </div>
 	  
-          <input type="hidden"  required="required" name="last_deposit_manipulation"  value="<?php echo $last_deposit_manipulation; ?>"   />
+
+
+	  <div class="row" style="margin:-5px;">
+        <div class="input-field col s12">
+		  <select name="type" id="">
+			  <option value="dep">DEPOSIT</option>
+			  <option value="with">WITHDRAW</option>
+		  </select>
+            <label for="email" data-error="wrong" data-success="right"><i class="fa fa-lock"></i> TYPE </label>
+        </div>
+      </div>
 	  
 	  
 
-          <input  type="hidden"  required="required" name="last_cashout_manipulation"  value="<?php echo $last_cashout_manipulation; ?>"   />
 	  <center>
 	 <button type="submit" class="btn" style="background-color:#ff5722;" name="update_settings" >
 	  <b>SAVE <i class="fa fa-sign-in"></i> </b></button>
@@ -141,4 +149,3 @@ require "script/mlc/home_footer.php";
 </body>
 
 </html>
-        

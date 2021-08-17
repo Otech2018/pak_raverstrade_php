@@ -175,12 +175,11 @@ echo "<li>
 	PASSWORD: $user_password <br/>
 	PHONE: $user_phone <br/>
 	STATUS: $user_status <br/>
-	REG DATE: $reg_date <br/> <hr/>
-ACC NAME: $acc_name <br/>
-	BANK NAME: $acc_bank <br/>
-	ACC NO: $acc_num 
-
-	<hr/>
+	REG DATE: $reg_date <br/> 
+EMAIL: $user_email <hr/>
+	WALLET ADDRESS:<br> $btc_address <hr/>
+	ACC BAL: $bal 
+<br/>
  REF BONUS: $user_ref_bonus <br/>
  
 	$button

@@ -30,8 +30,10 @@ $data = file_get_contents('php://input');
 if ($data) {
     $params = json_decode($data, true);
 
+	// $secret = "7j0ap91o99cxj8k9";
+
 	// check your secret code
-	if ($params["data"]["secret"] !== $secret) die();
+	// if ($params["data"]["secret"] !== $secret) die();
 
 	$invoice_id = $params["data"]["invoice_id"];
 	$input_address = $params["input_address"];

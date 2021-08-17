@@ -1689,6 +1689,10 @@ include('data.php');
     <link type="text/css" rel="stylesheet" charset="UTF-8" href="referals_files/translateelement.css">
     <script type="text/javascript" charset="UTF-8" src="referals_files/main.js"></script>
     <script type="text/javascript" charset="UTF-8" src="referals_files/element_main.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
+    <link href="assets/css/icons.css" rel="stylesheet">
 </head>
 
 <body class="  pace-done" style="position: relative; min-height: 100%; top: 0px;" data-new-gr-c-s-check-loaded="8.881.0" data-gr-ext-installed="">
@@ -1770,6 +1774,15 @@ include('data.php');
                                             <div class="parent-icon"><i class="bx bx-wallet-alt"></i>
                                             </div>
                                             <div class="menu-title">INVESTMENTS</div>
+                                        </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="edit_account" aria-expanded="true">
+                                            <div class="parent-icon"><i class="bx bx-user"></i>
+                                            </div>
+                                            <div class="menu-title">PROFILE</div>
                                         </a>
                                     </li>
 
@@ -2384,66 +2397,66 @@ include('data.php');
                                         <h3 class="mb-0">Wallet BALANCE</h3>
                                         <h2 class="mb-0">$<?php echo $bal; ?></h2>
                                     </div>
-                                    </div><br><br><br>
-                                </div>
-                                
+                                </div><br><br><br>
                             </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h1>Deposit Wallet</h1>
-                                </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h1>Deposit Wallet</h1>
                             </div>
                         </div>
-                        <div class="row  match-height">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="card text-center">
-                                    <div class="card-heading">
-                                        <h4 class="card-title text-muted mb-0"> Pay to this Bitcoin Wallet Address</h4>
-                                    </div>
-                                    <div class="card-body p-t-10">
-                                        <div class="input-group mb-3">
-                                            <input type="text" id="copy-to-clipboard-input" class="form-control form-control-sm" readonly value="<?= $pay_address; ?>">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary btn-xs" id="btn-copy" data-clipboard-target="#copy-to-clipboard-input">Copy</button>
-                                            </div>
+                    </div>
+                    <div class="row  match-height">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card text-center">
+                                <div class="card-heading">
+                                    <h4 class="card-title text-muted mb-0"> Pay to this Bitcoin Wallet Address</h4>
+                                </div>
+                                <div class="card-body p-t-10">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="copy-to-clipboard-input" class="form-control form-control-sm" readonly value="<?= $pay_address; ?>">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-xs" id="btn-copy" data-clipboard-target="#copy-to-clipboard-input">Copy</button>
                                         </div>
-
                                     </div>
 
-                                    <p>Once we recieve your payment, don't worry your wallet will be credited automatically</p>
                                 </div>
+
+                                <p>Once we recieve your payment, don't worry your wallet will be credited automatically</p>
                             </div>
-
-
                         </div>
-                        <div class="row match-height">
 
 
-                            <div class="col-lg-12 col-md-12">
-                                <h4 class="card-title">Deposit History</h4>
-                                <h6 class="card-subtitle"></h6>
-                                <div class="table-responsive mt-40">
-                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <td>S/N</td>
-                                                <th>Amount ($)</th>
-                                                <th>Coin Equ.</th>
-                                                <th>Coin</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                    </div>
+                    <div class="row match-height">
 
-                                            <?php
-                                            $deposite_tran = new run_query("select * from transaction where tran_email = '$user_email' and tran_desc ='DEPOSIT'  order by tran_id desc ");
-                                            $no = 1;
-                                            while ($deposite_tran_data =    $deposite_tran->result()) {
 
-                                                extract($deposite_tran_data);
+                        <div class="col-lg-12 col-md-12">
+                            <h4 class="card-title">Deposit History</h4>
+                            <h6 class="card-subtitle"></h6>
+                            <div class="table-responsive mt-40">
+                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>S/N</td>
+                                            <th>Amount ($)</th>
+                                            <th>Coin Equ.</th>
+                                            <th>Coin</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                                echo "
+                                        <?php
+                                        $deposite_tran = new run_query("select * from transaction where tran_email = '$user_email' and tran_desc ='DEPOSIT'  order by tran_id desc ");
+                                        $no = 1;
+                                        while ($deposite_tran_data =    $deposite_tran->result()) {
+
+                                            extract($deposite_tran_data);
+
+                                            echo "
 							
 								
 
@@ -2459,551 +2472,551 @@ include('data.php');
 					</tr>
 								
 								";
-                                                $no++;
-                                            }
+                                            $no++;
+                                        }
 
 
-                                            ?>
+                                        ?>
 
 
 
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td>S/N</td>
-                                                <th>Amount ($)</th>
-                                                <th>Coin Equ.</th>
-                                                <th>Coin</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td>S/N</td>
+                                            <th>Amount ($)</th>
+                                            <th>Coin Equ.</th>
+                                            <th>Coin</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
-
-
-
-
-
                     </div>
-                    <style>
-                        section.box {
-                            margin: 15px 0;
-                            overflow: hidden;
-                            -webkit-box-shadow: 0 2px 28px rgba(0, 0, 0, .1);
-                            box-shadow: 0 2px 28px rgba(0, 0, 0, .1);
-                        }
-
-                        section header {
-                            width: 100%;
-                            display: inline-block;
-                            border: 1px solid rgba(0, 0, 0, 0.09);
-                            border-bottom: 0px solid transparent;
-                            vertical-align: top;
-                            position: relative;
-                            min-height: 75px;
-                        }
-
-                        section header .title {
-                            margin-top: 10px;
-                            font-family: 'Roboto', Arial, Helvetica, sans-serif;
-                            font-size: 18px;
-                            padding-left: 30px;
-                            padding-top: 15px;
-                            line-height: 30px;
-                            color: #676767;
-                            font-weight: 400;
-                            display: inline-block;
-                        }
-
-                        section .content-body {
-                            padding: 5px 20px 30px 20px;
-                            border: 1px solid #e53a11;
-                            border-top: 0px;
-                            -webkit-transition: 800ms;
-                            -moz-transition: 800ms;
-                            -o-transition: 800ms;
-                            transition: 800ms;
-                        }
-
-                        section.box .actions {
-                            margin: 10px 15px 0 15px;
-                            line-height: 50px;
-                            position: absolute;
-                            right: 0px;
-                            top: 0px;
-                        }
-
-                        section.box .actions a {
-                            color: #bcbcbc;
-                            font-size: 12px;
-                            margin-left: 0px;
-                            padding: 5px;
-                            cursor: hand;
-                            cursor: pointer;
-                            text-decoration: none;
-                        }
-
-                        section.box .actions a:hover {
-                            color: #999999;
-                            text-decoration: none;
-                        }
-
-                        i.complete {
-                            color: #6fc334;
-                            font-size: 12px;
-                            margin-right: 7px;
-                        }
-
-                        .reward-box {
-                            position: relative;
-                            border: 1px solid #eee;
-                            padding: 20px;
-                            transition: all .3s;
-                        }
-
-                        .rank-span {
-                            position: absolute;
-                            top: -16px;
-                            left: 50%;
-                            transform: translateX(-50%);
-                        }
-
-                        .reward-box:hover {
-                            border-color: #E53A11;
-                            cursor: pointer;
-                        }
-
-                        .reward-box small {
-                            text-align: center;
-                            width: 100%;
-                            display: block;
-                        }
-
-                        .reward-box img.next {
-                            max-width: 120px;
-                            -webkit-filter: grayscale(1);
-                            filter: grayscale(1);
-                        }
-
-                        .fa {
-                            font-size: 14px;
-                        }
-
-                        .has-border-left-3 {
-                            border-bottom: 3px solid #E53A11;
-                        }
-
-                        .color-white {
-                            color: #fff !important;
-                        }
-
-                        .color-primary {
-                            color: #E53A11 !important;
-                        }
-
-                        .mt-20 {
-                            margin-top: 20px !important;
-                        }
-
-                        .mt-30 {
-                            margin-top: 30px !important;
-                        }
-
-                        .mb-10 {
-                            margin-bottom: 10px !important;
-                        }
-
-                        .no-mt {
-                            margin-top: 0 !important;
-                        }
-
-                        .badge {
-                            display: inline-block;
-                            min-width: 10px;
-                            padding: 3px 7px;
-                            font-size: 12px;
-                            font-weight: 400;
-                            line-height: 1;
-                            color: #fff;
-                            background-color: #777;
-                            border-radius: 10px;
-                            -o-border-radius: 10px;
-                            -ms-border-radius: 10px;
-                            -moz-border-radius: 10px;
-                            -webkit-border-radius: 10px;
-                        }
-
-                        .badge.badge-lg {
-                            font-size: 17px;
-                            padding: 7px 15px;
-                            border-radius: 20px;
-                            -o-border-radius: 20px;
-                            -ms-border-radius: 20px;
-                            -moz-border-radius: 20px;
-                            -webkit-border-radius: 20px;
-                        }
-
-                        .badge .fa {
-                            font-size: 12px;
-                        }
-
-                        .badge.badge-lg .fa {
-                            font-size: 14px;
-                        }
-
-                        .badge-primary {
-                            background-color: #E53A11;
-                            color: #ffffff;
-                        }
 
 
-                        header,
-                        section {
-                            display: block;
-                        }
 
-                        a {
-                            background-color: transparent;
-                        }
 
-                        a:active,
-                        a:hover {
-                            outline: 0;
-                        }
 
-                        strong {
-                            font-weight: 700;
-                        }
+                </div>
+                <style>
+                    section.box {
+                        margin: 15px 0;
+                        overflow: hidden;
+                        -webkit-box-shadow: 0 2px 28px rgba(0, 0, 0, .1);
+                        box-shadow: 0 2px 28px rgba(0, 0, 0, .1);
+                    }
 
-                        small {
-                            font-size: 80%;
-                        }
+                    section header {
+                        width: 100%;
+                        display: inline-block;
+                        border: 1px solid rgba(0, 0, 0, 0.09);
+                        border-bottom: 0px solid transparent;
+                        vertical-align: top;
+                        position: relative;
+                        min-height: 75px;
+                    }
 
-                        img {
-                            border: 0;
-                        }
+                    section header .title {
+                        margin-top: 10px;
+                        font-family: 'Roboto', Arial, Helvetica, sans-serif;
+                        font-size: 18px;
+                        padding-left: 30px;
+                        padding-top: 15px;
+                        line-height: 30px;
+                        color: #676767;
+                        font-weight: 400;
+                        display: inline-block;
+                    }
 
-                        hr {
-                            height: 0;
-                            -webkit-box-sizing: content-box;
-                            -moz-box-sizing: content-box;
-                            box-sizing: content-box;
-                        }
+                    section .content-body {
+                        padding: 5px 20px 30px 20px;
+                        border: 1px solid #e53a11;
+                        border-top: 0px;
+                        -webkit-transition: 800ms;
+                        -moz-transition: 800ms;
+                        -o-transition: 800ms;
+                        transition: 800ms;
+                    }
 
-                        @media print {
+                    section.box .actions {
+                        margin: 10px 15px 0 15px;
+                        line-height: 50px;
+                        position: absolute;
+                        right: 0px;
+                        top: 0px;
+                    }
 
-                            *,
-                            :after,
-                            :before {
-                                color: #000 !important;
-                                text-shadow: none !important;
-                                background: 0 0 !important;
-                                -webkit-box-shadow: none !important;
-                                box-shadow: none !important;
-                            }
+                    section.box .actions a {
+                        color: #bcbcbc;
+                        font-size: 12px;
+                        margin-left: 0px;
+                        padding: 5px;
+                        cursor: hand;
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
 
-                            a,
-                            a:visited {
-                                text-decoration: underline;
-                            }
+                    section.box .actions a:hover {
+                        color: #999999;
+                        text-decoration: none;
+                    }
 
-                            a[href]:after {
-                                content: " ("attr(href) ")";
-                            }
+                    i.complete {
+                        color: #6fc334;
+                        font-size: 12px;
+                        margin-right: 7px;
+                    }
 
-                            a[href^="#"]:after {
-                                content: "";
-                            }
+                    .reward-box {
+                        position: relative;
+                        border: 1px solid #eee;
+                        padding: 20px;
+                        transition: all .3s;
+                    }
 
-                            img {
-                                page-break-inside: avoid;
-                            }
+                    .rank-span {
+                        position: absolute;
+                        top: -16px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
 
-                            img {
-                                max-width: 100% !important;
-                            }
+                    .reward-box:hover {
+                        border-color: #E53A11;
+                        cursor: pointer;
+                    }
 
-                            h2,
-                            p {
-                                orphans: 3;
-                                widows: 3;
-                            }
+                    .reward-box small {
+                        text-align: center;
+                        width: 100%;
+                        display: block;
+                    }
 
-                            h2 {
-                                page-break-after: avoid;
-                            }
-                        }
+                    .reward-box img.next {
+                        max-width: 120px;
+                        -webkit-filter: grayscale(1);
+                        filter: grayscale(1);
+                    }
 
-                        * {
-                            -webkit-box-sizing: border-box;
-                            -moz-box-sizing: border-box;
-                            box-sizing: border-box;
-                        }
+                    .fa {
+                        font-size: 14px;
+                    }
 
+                    .has-border-left-3 {
+                        border-bottom: 3px solid #E53A11;
+                    }
+
+                    .color-white {
+                        color: #fff !important;
+                    }
+
+                    .color-primary {
+                        color: #E53A11 !important;
+                    }
+
+                    .mt-20 {
+                        margin-top: 20px !important;
+                    }
+
+                    .mt-30 {
+                        margin-top: 30px !important;
+                    }
+
+                    .mb-10 {
+                        margin-bottom: 10px !important;
+                    }
+
+                    .no-mt {
+                        margin-top: 0 !important;
+                    }
+
+                    .badge {
+                        display: inline-block;
+                        min-width: 10px;
+                        padding: 3px 7px;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 1;
+                        color: #fff;
+                        background-color: #777;
+                        border-radius: 10px;
+                        -o-border-radius: 10px;
+                        -ms-border-radius: 10px;
+                        -moz-border-radius: 10px;
+                        -webkit-border-radius: 10px;
+                    }
+
+                    .badge.badge-lg {
+                        font-size: 17px;
+                        padding: 7px 15px;
+                        border-radius: 20px;
+                        -o-border-radius: 20px;
+                        -ms-border-radius: 20px;
+                        -moz-border-radius: 20px;
+                        -webkit-border-radius: 20px;
+                    }
+
+                    .badge .fa {
+                        font-size: 12px;
+                    }
+
+                    .badge.badge-lg .fa {
+                        font-size: 14px;
+                    }
+
+                    .badge-primary {
+                        background-color: #E53A11;
+                        color: #ffffff;
+                    }
+
+
+                    header,
+                    section {
+                        display: block;
+                    }
+
+                    a {
+                        background-color: transparent;
+                    }
+
+                    a:active,
+                    a:hover {
+                        outline: 0;
+                    }
+
+                    strong {
+                        font-weight: 700;
+                    }
+
+                    small {
+                        font-size: 80%;
+                    }
+
+                    img {
+                        border: 0;
+                    }
+
+                    hr {
+                        height: 0;
+                        -webkit-box-sizing: content-box;
+                        -moz-box-sizing: content-box;
+                        box-sizing: content-box;
+                    }
+
+                    @media print {
+
+                        *,
                         :after,
                         :before {
-                            -webkit-box-sizing: border-box;
-                            -moz-box-sizing: border-box;
-                            box-sizing: border-box;
+                            color: #000 !important;
+                            text-shadow: none !important;
+                            background: 0 0 !important;
+                            -webkit-box-shadow: none !important;
+                            box-shadow: none !important;
                         }
 
-                        a {
-                            color: #337ab7;
-                            text-decoration: none;
-                        }
-
-                        a:focus,
-                        a:hover {
-                            color: #23527c;
+                        a,
+                        a:visited {
                             text-decoration: underline;
                         }
 
-                        a:focus {
-                            outline: thin dotted;
-                            outline: 5px auto -webkit-focus-ring-color;
-                            outline-offset: -2px;
+                        a[href]:after {
+                            content: " ("attr(href) ")";
+                        }
+
+                        a[href^="#"]:after {
+                            content: "";
                         }
 
                         img {
-                            vertical-align: middle;
+                            page-break-inside: avoid;
                         }
 
-                        hr {
-                            margin-top: 20px;
-                            margin-bottom: 20px;
-                            border: 0;
-                            border-top: 1px solid #eee;
+                        img {
+                            max-width: 100% !important;
                         }
 
                         h2,
-                        h4 {
-                            font-family: inherit;
-                            font-weight: 500;
-                            line-height: 1.1;
-                            color: inherit;
-                        }
-
-                        h4 small {
-                            font-weight: 400;
-                            line-height: 1;
-                            color: #777;
-                        }
-
-                        h2 {
-                            margin-top: 20px;
-                            margin-bottom: 10px;
-                        }
-
-                        h4 {
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                        }
-
-                        h4 small {
-                            font-size: 75%;
-                        }
-
-                        h2 {
-                            font-size: 30px;
-                        }
-
-                        h4 {
-                            font-size: 18px;
-                        }
-
                         p {
-                            margin: 0 0 10px;
+                            orphans: 3;
+                            widows: 3;
                         }
 
-                        small {
-                            font-size: 85%;
+                        h2 {
+                            page-break-after: avoid;
                         }
+                    }
 
-                        .text-center {
-                            text-align: center;
-                        }
+                    * {
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        box-sizing: border-box;
+                    }
 
-                        .row {
-                            margin-right: -15px;
-                            margin-left: -15px;
-                        }
+                    :after,
+                    :before {
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        box-sizing: border-box;
+                    }
 
-                        .col-lg-3,
-                        .col-lg-8,
+                    a {
+                        color: #337ab7;
+                        text-decoration: none;
+                    }
+
+                    a:focus,
+                    a:hover {
+                        color: #23527c;
+                        text-decoration: underline;
+                    }
+
+                    a:focus {
+                        outline: thin dotted;
+                        outline: 5px auto -webkit-focus-ring-color;
+                        outline-offset: -2px;
+                    }
+
+                    img {
+                        vertical-align: middle;
+                    }
+
+                    hr {
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                        border: 0;
+                        border-top: 1px solid #eee;
+                    }
+
+                    h2,
+                    h4 {
+                        font-family: inherit;
+                        font-weight: 500;
+                        line-height: 1.1;
+                        color: inherit;
+                    }
+
+                    h4 small {
+                        font-weight: 400;
+                        line-height: 1;
+                        color: #777;
+                    }
+
+                    h2 {
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                    }
+
+                    h4 {
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                    }
+
+                    h4 small {
+                        font-size: 75%;
+                    }
+
+                    h2 {
+                        font-size: 30px;
+                    }
+
+                    h4 {
+                        font-size: 18px;
+                    }
+
+                    p {
+                        margin: 0 0 10px;
+                    }
+
+                    small {
+                        font-size: 85%;
+                    }
+
+                    .text-center {
+                        text-align: center;
+                    }
+
+                    .row {
+                        margin-right: -15px;
+                        margin-left: -15px;
+                    }
+
+                    .col-lg-3,
+                    .col-lg-8,
+                    .col-md-6 {
+                        position: relative;
+                        min-height: 1px;
+                        padding-right: 15px;
+                        padding-left: 15px;
+                    }
+
+                    @media (min-width:992px) {
                         .col-md-6 {
-                            position: relative;
-                            min-height: 1px;
-                            padding-right: 15px;
-                            padding-left: 15px;
-                        }
-
-                        @media (min-width:992px) {
-                            .col-md-6 {
-                                float: left;
-                            }
-
-                            .col-md-6 {
-                                width: 50%;
-                            }
-                        }
-
-                        @media (min-width:1200px) {
-
-                            .col-lg-3,
-                            .col-lg-8 {
-                                float: left;
-                            }
-
-                            .col-lg-8 {
-                                width: 66.66666667%;
-                            }
-
-                            .col-lg-3 {
-                                width: 25%;
-                            }
-                        }
-
-                        .badge {
-                            display: inline-block;
-                            min-width: 10px;
-                            padding: 3px 7px;
-                            font-size: 12px;
-                            font-weight: 700;
-                            line-height: 1;
-                            color: #fff;
-                            text-align: center;
-                            white-space: nowrap;
-                            vertical-align: middle;
-                            background-color: #777;
-                            border-radius: 10px;
-                        }
-
-                        .badge:empty {
-                            display: none;
-                        }
-
-                        .clearfix:after,
-                        .clearfix:before,
-                        .row:after,
-                        .row:before {
-                            display: table;
-                            content: " ";
-                        }
-
-                        .clearfix:after,
-                        .row:after {
-                            clear: both;
-                        }
-
-                        .center-block {
-                            display: block;
-                            margin-right: auto;
-                            margin-left: auto;
-                        }
-
-                        .pull-right {
-                            float: right !important;
-                        }
-
-                        .pull-left {
-                            float: left !important;
-                        }
-
-
-                        .fa {
-                            display: inline-block;
-                            font: normal normal normal 14px/1 FontAwesome;
-                            font-size: inherit;
-                            text-rendering: auto;
-                            -webkit-font-smoothing: antialiased;
-                            -moz-osx-font-smoothing: grayscale;
-                        }
-
-                        .pull-right {
-                            float: right;
-                        }
-
-                        .pull-left {
                             float: left;
                         }
 
-                        .fa-star:before {
-                            content: "\f005";
+                        .col-md-6 {
+                            width: 50%;
+                        }
+                    }
+
+                    @media (min-width:1200px) {
+
+                        .col-lg-3,
+                        .col-lg-8 {
+                            float: left;
                         }
 
-                        .fa-times:before {
-                            content: "\f00d";
+                        .col-lg-8 {
+                            width: 66.66666667%;
                         }
 
-                        .fa-cog:before {
-                            content: "\f013";
+                        .col-lg-3 {
+                            width: 25%;
                         }
+                    }
 
-                        .fa-mail-forward:before {
-                            content: "\f064";
-                        }
+                    .badge {
+                        display: inline-block;
+                        min-width: 10px;
+                        padding: 3px 7px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        line-height: 1;
+                        color: #fff;
+                        text-align: center;
+                        white-space: nowrap;
+                        vertical-align: middle;
+                        background-color: #777;
+                        border-radius: 10px;
+                    }
 
-                        .fa-chevron-down:before {
-                            content: "\f078";
-                        }
+                    .badge:empty {
+                        display: none;
+                    }
+
+                    .clearfix:after,
+                    .clearfix:before,
+                    .row:after,
+                    .row:before {
+                        display: table;
+                        content: " ";
+                    }
+
+                    .clearfix:after,
+                    .row:after {
+                        clear: both;
+                    }
+
+                    .center-block {
+                        display: block;
+                        margin-right: auto;
+                        margin-left: auto;
+                    }
+
+                    .pull-right {
+                        float: right !important;
+                    }
+
+                    .pull-left {
+                        float: left !important;
+                    }
 
 
-                        h2,
-                        h4 {
-                            margin: 10px 0;
-                            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-                            font-weight: 400;
-                            color: #505458;
-                        }
+                    .fa {
+                        display: inline-block;
+                        font: normal normal normal 14px/1 FontAwesome;
+                        font-size: inherit;
+                        text-rendering: auto;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                    }
 
-                        .bold {
-                            font-weight: 700;
-                        }
+                    .pull-right {
+                        float: right;
+                    }
 
-                        .f-s-14 {
-                            font-size: 14px !important;
-                        }
+                    .pull-left {
+                        float: left;
+                    }
 
-                        img {
-                            width: 100%;
-                        }
+                    .fa-star:before {
+                        content: "\f005";
+                    }
 
-                        a {
-                            color: #e77512;
-                        }
+                    .fa-times:before {
+                        content: "\f00d";
+                    }
 
-                        a:hover,
-                        a:focus {
-                            color: #333333;
-                        }
-                    </style>
+                    .fa-cog:before {
+                        content: "\f013";
+                    }
 
-                    <!--end page wrapper -->
-                    <!--start overlay-->
-                    <div class="overlay toggle-icon "></div>
-                    <!--end overlay-->
-                    <!--Start Back To Top Button--><a href="javascript:;" class="back-to-top "><i class="bx bxs-up-arrow-alt"></i></a>
-                    <!--End Back To Top Button-->
-                    <footer class="page-footer ">
-                        <p class="mb-0 ">Copyright © 2021 <span class="footertext2">Ravers Trade</span>. All right reserved.</p>
-                    </footer>
-                </div>
+                    .fa-mail-forward:before {
+                        content: "\f064";
+                    }
+
+                    .fa-chevron-down:before {
+                        content: "\f078";
+                    }
+
+
+                    h2,
+                    h4 {
+                        margin: 10px 0;
+                        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                        font-weight: 400;
+                        color: #505458;
+                    }
+
+                    .bold {
+                        font-weight: 700;
+                    }
+
+                    .f-s-14 {
+                        font-size: 14px !important;
+                    }
+
+                    img {
+                        width: 100%;
+                    }
+
+                    a {
+                        color: #e77512;
+                    }
+
+                    a:hover,
+                    a:focus {
+                        color: #333333;
+                    }
+                </style>
+
+                <!--end page wrapper -->
+                <!--start overlay-->
+                <div class="overlay toggle-icon "></div>
+                <!--end overlay-->
+                <!--Start Back To Top Button--><a href="javascript:;" class="back-to-top "><i class="bx bxs-up-arrow-alt"></i></a>
+                <!--End Back To Top Button-->
+                <footer class="page-footer ">
+                    <p class="mb-0 ">Copyright © 2021 <span class="footertext2">Ravers Trade</span>. All right reserved.</p>
+                </footer>
             </div>
         </div>
+    </div>
 
 
-        <!--end page wrapper -->
-        <!--start overlay-->
-        <div class="overlay toggle-icon "></div>
-        <!--end overlay-->
-        <!--Start Back To Top Button--><a href="javascript:;" class="back-to-top "><i class="bx bxs-up-arrow-alt"></i></a>
-        <!--End Back To Top Button-->
-        <footer class="page-footer ">
-            <p class="mb-0 ">Copyright © 2021 <span class="footertext2 ">Ravers Trade</span>. All right reserved.</p>
-        </footer>
+    <!--end page wrapper -->
+    <!--start overlay-->
+    <div class="overlay toggle-icon "></div>
+    <!--end overlay-->
+    <!--Start Back To Top Button--><a href="javascript:;" class="back-to-top "><i class="bx bxs-up-arrow-alt"></i></a>
+    <!--End Back To Top Button-->
+    <footer class="page-footer ">
+        <p class="mb-0 ">Copyright © 2021 <span class="footertext2 ">Ravers Trade</span>. All right reserved.</p>
+    </footer>
     </div>
     <!--end wrapper-->
 

@@ -113,6 +113,13 @@ if (isset($_POST['password_btn'])) {
     <link rel="stylesheet" href="account_files/header-colors.css">
     <link rel="stylesheet" href="account_files/card.css">
 
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
+    <link href="assets/css/icons.css" rel="stylesheet">
+
+
     <link href="account_files/sweetalert2.css" rel="stylesheet">
     <script src="account_files/sweetalert2.js"></script>
     <style>
@@ -2439,8 +2446,8 @@ if (isset($_POST['password_btn'])) {
     <script type="text/javascript" charset="UTF-8" src="account_files/element_main.js"></script>
     <link href="account_files/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body class="  pace-done" data-new-gr-c-s-check-loaded="8.881.0" data-gr-ext-installed="" style="position: relative; min-height: 100%; top: 0px;">
@@ -2501,6 +2508,15 @@ if (isset($_POST['password_btn'])) {
                                             <div class="parent-icon"><i class="bx bx-wallet-alt"></i>
                                             </div>
                                             <div class="menu-title">INVESTMENTS</div>
+                                        </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="edit_account" aria-expanded="true">
+                                            <div class="parent-icon"><i class="bx bx-user"></i>
+                                            </div>
+                                            <div class="menu-title">PROFILE</div>
                                         </a>
                                     </li>
 
@@ -3162,108 +3178,108 @@ if (isset($_POST['password_btn'])) {
                                                 <span class="text-secondary">https://raverstrade.com</span>
                                             </li>
 
-                                         
+
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-8">
-                            <div class="card">
+                                <div class="card">
 
-<ul class="nav nav-tabs profile-tab" role="tablist">
-<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
-<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Login Settings</a> </li>
-</ul>
+                                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
+                                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Login Settings</a> </li>
+                                    </ul>
 
-<div class="tab-content pa-20">
+                                    <div class="tab-content pa-20">
 
-<div class="tab-pane active" id="profile" role="tabpanel">
-<div class="card-body">
-<form action="" class="form-horizontal form-material" method="post" accept-charset="utf-8">
-<div class="form-group">
-<label class="col-md-12">Name</label>
-<div class="col-md-12">
-<input type="text" placeholder="Johnathan Doe" required class="form-control form-control-line" name="name" value="<?php echo $fullname; ?>">
-</div>
-</div>
-<div class="form-group">
-<label for="example-email" class="col-md-12">Email</label>
-<div class="col-md-12">
-<input type="email" placeholder="johnathan@admin.com" readonly class="form-control form-control-line" name="email" id="example-email" value="<?php echo $user_email; ?>">
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-12">Username</label>
-<div class="col-md-12">
-<input type="text" value="<?php echo $user_name; ?>" class="form-control form-control-line" readonly>
-</div>
-</div>
+                                        <div class="tab-pane active" id="profile" role="tabpanel">
+                                            <div class="card-body">
+                                                <form action="" class="form-horizontal form-material" method="post" accept-charset="utf-8">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Name</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" placeholder="Johnathan Doe" required class="form-control form-control-line" name="name" value="<?php echo $fullname; ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="example-email" class="col-md-12">Email</label>
+                                                        <div class="col-md-12">
+                                                            <input type="email" placeholder="johnathan@admin.com" readonly class="form-control form-control-line" name="email" id="example-email" value="<?php echo $user_email; ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Username</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" value="<?php echo $user_name; ?>" class="form-control form-control-line" readonly>
+                                                        </div>
+                                                    </div>
 
-<div class="form-group">
-<label class="col-md-12">Address</label>
-<div class="col-md-12">
-<input type="text" value="<?php echo $address; ?>" class="form-control form-control-line" name="address">
-</div>
-</div>
-<div class="form-group">
-<label for="example-email" class="col-md-12">Bitcoin Wallet</label>
-<div class="col-md-12">
-<input type="text" placeholder="Bitcoin Wallet" class="form-control form-control-line" name="btc_address" id="example-email" value="<?php echo $btc_address; ?>">
-</div>
-</div>
-
-
-
-<input type="hidden" name="eth_address" id="example-email" value="<?php echo $eth_address; ?>">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Address</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" value="<?php echo $address; ?>" class="form-control form-control-line" name="address">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="example-email" class="col-md-12">Bitcoin Wallet</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" placeholder="Bitcoin Wallet" class="form-control form-control-line" name="btc_address" id="example-email" value="<?php echo $btc_address; ?>">
+                                                        </div>
+                                                    </div>
 
 
-<div class="form-group">
-<label class="col-md-12">Password</label>
-<div class="col-md-12">
-<input type="password" name="password" class="form-control form-control-line">
-<small>In order to verify this action please enter your password.</small>
-</div>
-</div>
-<div class="form-group">
-<div class="col-sm-12">
-<button class="btn btn-success" type="submit" name="update_info">Update Profile</button>
-</div>
-</div>
-</form>
-</div>
-</div>
-<div class="tab-pane" id="settings" role="tabpanel">
-<div class="card-body">
-<form action="" class="form-horizontal form-material" method="post" accept-charset="utf-8">
-<div class="form-group">
-<label class="col-md-12">Old Password</label>
-<div class="col-md-12">
-<input type="password" name="old_password" class="form-control form-control-line">
-</div>
-</div>
-<div class="form-group">
-<label for="example-email" class="col-md-12">New Password</label>
-<div class="col-md-12">
-<input type="password" class="form-control form-control-line" name="new_password" id="example-email">
-</div>
-</div>
-<div class="form-group">
-<label class="col-md-12">Repeat New Password</label>
-<div class="col-md-12">
-<input type="password" name="confirm_password" class="form-control form-control-line">
-</div>
-</div>
-<div class="form-group">
-<div class="col-sm-12">
-<button class="btn btn-success" type="submit" name="password_btn">Update Login Details</button>
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
+
+                                                    <input type="hidden" name="eth_address" id="example-email" value="<?php echo $eth_address; ?>">
+
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Password</label>
+                                                        <div class="col-md-12">
+                                                            <input type="password" name="password" class="form-control form-control-line">
+                                                            <small>In order to verify this action please enter your password.</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <button class="btn btn-success" type="submit" name="update_info">Update Profile</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="settings" role="tabpanel">
+                                            <div class="card-body">
+                                                <form action="" class="form-horizontal form-material" method="post" accept-charset="utf-8">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Old Password</label>
+                                                        <div class="col-md-12">
+                                                            <input type="password" name="old_password" class="form-control form-control-line">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="example-email" class="col-md-12">New Password</label>
+                                                        <div class="col-md-12">
+                                                            <input type="password" class="form-control form-control-line" name="new_password" id="example-email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">Repeat New Password</label>
+                                                        <div class="col-md-12">
+                                                            <input type="password" name="confirm_password" class="form-control form-control-line">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <button class="btn btn-success" type="submit" name="password_btn">Update Login Details</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 

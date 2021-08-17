@@ -1,0 +1,27 @@
+RewriteEngine On 
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://raverstrade.com/$1 [R=301,L,NE]
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)$ $1.php [NC,L]
+# -FrontPage-
+
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from all
+</Limit>
+<Limit PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+AuthUserFile /services/users//zstorage4p1/frankchris//www/raverstrade.com/_vti_pvt/service.pwd
+AuthGroupFile /services/users//zstorage4p1/frankchris//www/raverstrade.com/_vti_pvt/service.grp

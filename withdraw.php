@@ -150,6 +150,14 @@ if (isset($_POST['invest_btn'])) {
   <link rel="stylesheet" href="deposit_list_files/header-colors.css">
   <link rel="stylesheet" href="deposit_list_files/card.css">
 
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="assets/css/app.css" rel="stylesheet">
+  <link href="assets/css/icons.css" rel="stylesheet">
+
+
+
   <link href="deposit_list_files/sweetalert2.css" rel="stylesheet">
   <script src="deposit_list_files/sweetalert2.js"></script>
   <style>
@@ -2524,6 +2532,14 @@ if (isset($_POST['invest_btn'])) {
                     </a>
                   </li>
 
+                  <li>
+                    <a href="edit_account" aria-expanded="true">
+                      <div class="parent-icon"><i class="bx bx-user"></i>
+                      </div>
+                      <div class="menu-title">PROFILE</div>
+                    </a>
+                  </li>
+
 
                   <li class="menu-label">AFFILIATE PROGRAM</li>
                   <li>
@@ -3085,20 +3101,20 @@ if (isset($_POST['invest_btn'])) {
         <div class="container">
           <div class="row">
 
-          <div class="col-12">
+            <div class="col-12">
 
-<div class="card-body">
-    <div class="balances d-flex align-items-center">
-        <div>
-            <h3 class="mb-0">Wallet BALANCE</h3>
-            <h2 class="mb-0">$<?php echo $bal; ?></h2>
-        </div>
-        </div><br><br><br>
-    </div>
-    
-</div>
-            
-         
+              <div class="card-body">
+                <div class="balances d-flex align-items-center">
+                  <div>
+                    <h3 class="mb-0">Wallet BALANCE</h3>
+                    <h2 class="mb-0">$<?php echo $bal; ?></h2>
+                  </div>
+                </div><br><br><br>
+              </div>
+
+            </div>
+
+
 
 
             <div class="col-12">
@@ -3107,65 +3123,65 @@ if (isset($_POST['invest_btn'])) {
                   <h1>YOUR INVESTMENTS</h1>
 
 
-<div class="table-responsive mt-40">
-<table id="example23" class="display nowrap table table-hover table-striped table-bordered">
-<thead>
-<tr>
-<td>S/N</td>
-<th>Investment Ref</th>
-<th>Action</th>
-<th>Amount</th>
-<th>Daily Growth</th>
-<th>Expiry Date </th>
-<th> Duration </th>
-<th>Expected Profit($)</th>
-<th>Status</th>
-</tr>
+                  <div class="table-responsive mt-40">
+                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <td>S/N</td>
+                          <th>Investment Ref</th>
+                          <th>Action</th>
+                          <th>Amount</th>
+                          <th>Daily Growth</th>
+                          <th>Expiry Date </th>
+                          <th> Duration </th>
+                          <th>Expected Profit($)</th>
+                          <th>Status</th>
+                        </tr>
 
 
-</thead>
-<tbody>
+                      </thead>
+                      <tbody>
 
 
-<?php 
-								$deposite_tran = new run_query("select * from transaction where tran_user_id = '$user_id' and tran_desc ='INVESTMENT'  order by tran_id desc  ");
-								$no = 1;
-							while(	$deposite_tran_data =	$deposite_tran->result() ){
-							
-								extract($deposite_tran_data );
-								
-								$t1 = strtotime($start_tran_date);
-								$t2 = strtotime($reg_Date);
-								$diff = $t2 -$t1;
-								$days_online_d =  $diff  /86400;
-								$duration = round($days_online_d);
-								$tran_current_bal_u  = ($duration *  $tran_daily_growth    ) - $tran_withdraw_amt;
-								
-								$tran_current_bal_u =  number_format( $tran_current_bal_u,4);
-								if($duration >=30){
-								$tran_current_bal_u  = ( 30 *  $tran_daily_growth  ) - $tran_withdraw_amt;
-								}
-								if( ( $duration >= 30  && $tran_current_bal_u > 0 && $tran_status =='ACTIVE' ) or ($duration >= 30  && $tran_current_bal_u > 0 ) ){
-								$btn ="<br/> <form method='POST'>  
+                        <?php
+                        $deposite_tran = new run_query("select * from transaction where tran_user_id = '$user_id' and tran_desc ='INVESTMENT'  order by tran_id desc  ");
+                        $no = 1;
+                        while ($deposite_tran_data =  $deposite_tran->result()) {
+
+                          extract($deposite_tran_data);
+
+                          $t1 = strtotime($start_tran_date);
+                          $t2 = strtotime($reg_Date);
+                          $diff = $t2 - $t1;
+                          $days_online_d =  $diff  / 86400;
+                          $duration = round($days_online_d);
+                          $tran_current_bal_u  = ($duration *  $tran_daily_growth) - $tran_withdraw_amt;
+
+                          $tran_current_bal_u =  number_format($tran_current_bal_u, 4);
+                          if ($duration >= 30) {
+                            $tran_current_bal_u  = (30 *  $tran_daily_growth) - $tran_withdraw_amt;
+                          }
+                          if (($duration >= 30  && $tran_current_bal_u > 0 && $tran_status == 'ACTIVE') or ($duration >= 30  && $tran_current_bal_u > 0)) {
+                            $btn = "<br/> <form method='POST'>  
 								
 									<button type='submit'  name='cash_out$tran_id' class='btn btn-sm btn-success' >Withdraw</button> 
 									<input type='hidden' name='coin$tran_id' required value='BTC' />
 								</form>";
-								}else{
-								
-								$btn ="<br/><button  class='btn btn-sm btn-outline-danger' disabled > <b>WITHDRAW </b> </button>";
-								}
+                          } else {
 
-								if($tran_status =='ACTIVE'  OR $tran_status =='ACTIVE2'){
-									$tran_status ="In Progress";
-								}
-								
-								if($duration >= 30){
-								$tran_current_bal_u  = ( 30 *  $tran_daily_growth  ) - $tran_withdraw_amt;
-								$tran_status ="Expired";
-								$duration ="Expired";
-								}
-								echo"
+                            $btn = "<br/><button  class='btn btn-sm btn-outline-danger' disabled > <b>WITHDRAW </b> </button>";
+                          }
+
+                          if ($tran_status == 'ACTIVE'  or $tran_status == 'ACTIVE2') {
+                            $tran_status = "In Progress";
+                          }
+
+                          if ($duration >= 30) {
+                            $tran_current_bal_u  = (30 *  $tran_daily_growth) - $tran_withdraw_amt;
+                            $tran_status = "Expired";
+                            $duration = "Expired";
+                          }
+                          echo "
 								
 							<tr>
 								<td>$no</td>
@@ -3183,31 +3199,31 @@ if (isset($_POST['invest_btn'])) {
 								</tr>	
 								
 								";
-								$no++;
-								
-								
-									if(isset($_POST['cash_out'.$tran_id]))  {
-										$coin = addslashes(htmlentities($_POST['coin'.$tran_id]));
-    
-							$qw1RRqq = new run_query("UPDATE   `transaction`  set  tran_withdraw_amt=tran_withdraw_amt+$tran_current_bal_u , tran_status='ACTIVE2' where  tran_id ='$tran_id' ");
-							
-							$timer_end  = date('Y-m-d H:i:s',strtotime('48 hours') );
-							$timer_start  = date('Y-m-d H:i:s' );
-							$tran_invoice  = "WIT-".date('iYdmhs' );
-							$cash_out = new run_query("INSERT INTO    `transaction`  set coin='$coin',  tran_user_id = '$user_id', tran_invoice='$tran_invoice',
-							tran_email='$user_email', tran_username='$user_name', trant_amt='$tran_current_bal_u',start_tran_date='$timer_start', tran_exp_date='$timer_end',  tran_date='$reg_Date', tran_status='PENDING', tran_desc ='CASH_OUT' ");
-							
-								$email_amt = $trant_amt;
-							 
-								
+                          $no++;
 
-								$site_email_send = "$site_email";		
-								$welcome_email_subject = "Withdrawal of - $ $trant_amt | $site_name";
-								$welcome_email_headers .= "Content-type:text/html;charset=UTF-8 \r\n";
-								$welcome_email_headers .= "From: $site_name";	
-								
-								
-								 $welcome_email_body = "
+
+                          if (isset($_POST['cash_out' . $tran_id])) {
+                            $coin = addslashes(htmlentities($_POST['coin' . $tran_id]));
+
+                            $qw1RRqq = new run_query("UPDATE   `transaction`  set  tran_withdraw_amt=tran_withdraw_amt+$tran_current_bal_u , tran_status='ACTIVE2' where  tran_id ='$tran_id' ");
+
+                            $timer_end  = date('Y-m-d H:i:s', strtotime('48 hours'));
+                            $timer_start  = date('Y-m-d H:i:s');
+                            $tran_invoice  = "WIT-" . date('iYdmhs');
+                            $cash_out = new run_query("INSERT INTO    `transaction`  set coin='$coin',  tran_user_id = '$user_id', tran_invoice='$tran_invoice',
+							tran_email='$user_email', tran_username='$user_name', trant_amt='$tran_current_bal_u',start_tran_date='$timer_start', tran_exp_date='$timer_end',  tran_date='$reg_Date', tran_status='PENDING', tran_desc ='CASH_OUT' ");
+
+                            $email_amt = $trant_amt;
+
+
+
+                            $site_email_send = "$site_email";
+                            $welcome_email_subject = "Withdrawal of - $ $trant_amt | $site_name";
+                            $welcome_email_headers .= "Content-type:text/html;charset=UTF-8 \r\n";
+                            $welcome_email_headers .= "From: $site_name";
+
+
+                            $welcome_email_body = "
 								
 									<html>
 									<head>
@@ -3236,98 +3252,94 @@ if (isset($_POST['invest_btn'])) {
 									</html>
 								
 									";
-								
-									 mail($user_email,$welcome_email_subject,$welcome_email_body,$welcome_email_headers);
-									  
-								 echo "<script>alert(\"TRANSACTION WITHDRAW REQUEST SUCCESSFULL!!! \");</script>"; 
-							 
-						echo "<script>window.location.replace(\"withdrawals.php\");</script>"; 
+
+                            mail($user_email, $welcome_email_subject, $welcome_email_body, $welcome_email_headers);
+
+                            echo "<script>alert(\"TRANSACTION WITHDRAW REQUEST SUCCESSFULL!!! \");</script>";
+
+                            echo "<script>window.location.replace(\"withdrawals.php\");</script>";
+                          }
+                        }
+
+                        ?>
 
 
-						 }
-						 
-						 
-							}
-							
-							?>
-
-
-</tbody>
-<tfoot>
-<tr>
-<td>S/N</td>
-<th>Investment Ref</th>
-<th>Action</th>
-<th>Amount</th>
-<th>Daily Growth</th>
-<th>Expiry Date </th>
-<th> Duration </th>
-<th>Expected Profit($)</th>
-<th>Status</th>
-</tr>
-</tfoot>
-</table>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>S/N</td>
+                          <th>Investment Ref</th>
+                          <th>Action</th>
+                          <th>Amount</th>
+                          <th>Daily Growth</th>
+                          <th>Expiry Date </th>
+                          <th> Duration </th>
+                          <th>Expected Profit($)</th>
+                          <th>Status</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
                 </div>
-              </div>
 
+
+              </div>
 
             </div>
 
-          </div>
 
-
-          <div class="col-12">
+            <div class="col-12">
               <div class="card">
                 <div class="card-body">
                   <h1> WITHDRAWAL HISTORY </h1>
 
 
 
-                  
-<div class="table-responsive mt-40">
-<table id="example23" class="display nowrap table table-hover table-striped table-bordered">
-<thead>
-<tr>
-<td>S/N</td>
-<th>Withdrawal Ref</th>
-<th>Date Requested</th>
-<th>Amount</th>
-<th>Status</th>
-<th>Timer</th>
+
+                  <div class="table-responsive mt-40">
+                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <td>S/N</td>
+                          <th>Withdrawal Ref</th>
+                          <th>Date Requested</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                          <th>Timer</th>
 
 
 
 
-</tr>
-</thead>
-<tbody>
+                        </tr>
+                      </thead>
+                      <tbody>
 
-<?php 
-							$cashout_tran = new run_query("select * from transaction where tran_user_id = '$user_id' and tran_desc ='CASH_OUT' order by tran_id desc limit 20 ");
-								$no_c = 1;
-							while(	$cashout_tran_data =	$cashout_tran->result() ){
-							
-								extract($cashout_tran_data );
-								
-								$timer_start  = date('Y-m-d H:i:s' );
-								$t1 = strtotime($timer_start);
-								$t2 = strtotime($tran_exp_date);
-								$diff = $t2 -$t1;
-								$days_online_d =  $diff  /3600;
-								$timer = round($days_online_d) . "(HRS)";
-								
-								
-								if( $timer <= 0){
-								$timer ="PENDING";
-								} 
-								
-								
-								if( $tran_status=='PAID'){
-								
-								$timer  = $tran_status ;
-								}
-								
-						echo "
+                        <?php
+                        $cashout_tran = new run_query("select * from transaction where tran_user_id = '$user_id' and tran_desc ='CASH_OUT' order by tran_id desc limit 20 ");
+                        $no_c = 1;
+                        while ($cashout_tran_data =  $cashout_tran->result()) {
+
+                          extract($cashout_tran_data);
+
+                          $timer_start  = date('Y-m-d H:i:s');
+                          $t1 = strtotime($timer_start);
+                          $t2 = strtotime($tran_exp_date);
+                          $diff = $t2 - $t1;
+                          $days_online_d =  $diff  / 3600;
+                          $timer = round($days_online_d) . "(HRS)";
+
+
+                          if ($timer <= 0) {
+                            $timer = "PENDING";
+                          }
+
+
+                          if ($tran_status == 'PAID') {
+
+                            $timer  = $tran_status;
+                          }
+
+                          echo "
 								<tr>
 							<td>$no_c </td>
 							<td>$tran_invoice </td>
@@ -3340,98 +3352,97 @@ if (isset($_POST['invest_btn'])) {
 								
 								
 								";
-									$no_c ++;
-							
-							}
-						
-							?>
-							
+                          $no_c++;
+                        }
+
+                        ?>
 
 
-</tbody>
-<tfoot>
-<tr>
-    <td>S/N</td>
-    <th>Withdrawal Ref</th>
-    <th>Date Requested</th>
-    <th>Amount</th>
-    <th>Status</th>
-    <th>Timer</th>
-</tr>
-</tfoot>
-</table>
-</div>
+
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>S/N</td>
+                          <th>Withdrawal Ref</th>
+                          <th>Date Requested</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                          <th>Timer</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
 
 
                 </div>
               </div>
+            </div>
           </div>
+
+          <!--end page wrapper -->
+          <!--start overlay-->
+          <div class="overlay toggle-icon "></div>
+          <!--end overlay-->
+          <!--Start Back To Top Button--><a href="javascript:;" class="back-to-top "><i class="bx bxs-up-arrow-alt"></i></a>
+          <!--End Back To Top Button-->
+          <footer class="page-footer ">
+            <p class="mb-0 ">Copyright © 2021 <span class="footertext2">Ravers Trade</span>. All right reserved.</p>
+          </footer>
         </div>
+        <!--end wrapper-->
 
-        <!--end page wrapper -->
-        <!--start overlay-->
-        <div class="overlay toggle-icon "></div>
-        <!--end overlay-->
-        <!--Start Back To Top Button--><a href="javascript:;" class="back-to-top "><i class="bx bxs-up-arrow-alt"></i></a>
-        <!--End Back To Top Button-->
-        <footer class="page-footer ">
-          <p class="mb-0 ">Copyright © 2021 <span class="footertext2">Ravers Trade</span>. All right reserved.</p>
-        </footer>
-      </div>
-      <!--end wrapper-->
-
-      <!-- Bootstrap JS -->
-      <!-- Bootstrap JS -->
-      <script src="deposit_list_files/bootstrap.js"></script>
-      <!--plugins-->
-      <script src="deposit_list_files/jquery.js"></script>
-      <script src="deposit_list_files/simplebar.js"></script>
-      <script src="deposit_list_files/metisMenu.js"></script>
-      <script src="deposit_list_files/perfect-scrollbar.js"></script>
-      <script src="deposit_list_files/apexcharts.js"></script>
-      <script src="deposit_list_files/widgets.js"></script>
-      <script src="deposit_list_files/clipboard.js"></script>
-      <!--app JS-->
-      <script src="deposit_list_files/app.js"></script>
-      <script>
-        new PerfectScrollbar('.dashboard-top-countries');
-      </script>
+        <!-- Bootstrap JS -->
+        <!-- Bootstrap JS -->
+        <script src="deposit_list_files/bootstrap.js"></script>
+        <!--plugins-->
+        <script src="deposit_list_files/jquery.js"></script>
+        <script src="deposit_list_files/simplebar.js"></script>
+        <script src="deposit_list_files/metisMenu.js"></script>
+        <script src="deposit_list_files/perfect-scrollbar.js"></script>
+        <script src="deposit_list_files/apexcharts.js"></script>
+        <script src="deposit_list_files/widgets.js"></script>
+        <script src="deposit_list_files/clipboard.js"></script>
+        <!--app JS-->
+        <script src="deposit_list_files/app.js"></script>
+        <script>
+          new PerfectScrollbar('.dashboard-top-countries');
+        </script>
 
 
 
 
-    </div>
-  </div>
-  <div id="goog-gt-tt" class="skiptranslate" dir="ltr">
-    <div style="padding: 8px;">
-      <div>
-        <div class="logo"><img src="deposit_list_files/translate_24dp.png" alt="Google Translate" width="20" height="20"></div>
       </div>
     </div>
-    <div class="top" style="padding: 8px; float: left; width: 100%;">
-      <h1 class="title gray">Original text</h1>
-    </div>
-    <div class="middle" style="padding: 8px;">
-      <div class="original-text"></div>
-    </div>
-    <div class="bottom" style="padding: 8px;">
-      <div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div>
-      <div class="started-activity-container">
-        <hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
-        <div class="activity-root"></div>
+    <div id="goog-gt-tt" class="skiptranslate" dir="ltr">
+      <div style="padding: 8px;">
+        <div>
+          <div class="logo"><img src="deposit_list_files/translate_24dp.png" alt="Google Translate" width="20" height="20"></div>
+        </div>
       </div>
+      <div class="top" style="padding: 8px; float: left; width: 100%;">
+        <h1 class="title gray">Original text</h1>
+      </div>
+      <div class="middle" style="padding: 8px;">
+        <div class="original-text"></div>
+      </div>
+      <div class="bottom" style="padding: 8px;">
+        <div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div>
+        <div class="started-activity-container">
+          <hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
+          <div class="activity-root"></div>
+        </div>
+      </div>
+      <div class="status-message" style="display: none;"></div>
+    </div><svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xlink="http://www.w3.org/1999/xlink" svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
+      <defs id="SvgjsDefs1002"></defs>
+      <polyline id="SvgjsPolyline1003" points="0,0"></polyline>
+      <path id="SvgjsPath1004" d="M0 0 "></path>
+    </svg>
+    <div class="goog-te-spinner-pos">
+      <div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66">
+          <circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg></div>
     </div>
-    <div class="status-message" style="display: none;"></div>
-  </div><svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xlink="http://www.w3.org/1999/xlink" svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
-    <defs id="SvgjsDefs1002"></defs>
-    <polyline id="SvgjsPolyline1003" points="0,0"></polyline>
-    <path id="SvgjsPath1004" d="M0 0 "></path>
-  </svg>
-  <div class="goog-te-spinner-pos">
-    <div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66">
-        <circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-      </svg></div>
-  </div>
 </body>
 <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
