@@ -3208,7 +3208,6 @@ $comp_invest_da =         $co_invest;
                                     <tr>
                                         <td>S/N</td>
                                         <th>Amount ($)</th>
-                                        <th>Coin Equ.</th>
                                         <th>Coin</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -3230,7 +3229,6 @@ $comp_invest_da =         $co_invest;
 <tr>
 <td>$no</td>
 <td> $ $trant_amt</td>
-<td> $coin_amt</td>
 <td> $coin</td>
 <td>
 <span class='badge badge-danger'>$tran_status</span>
@@ -3252,7 +3250,6 @@ $comp_invest_da =         $co_invest;
                                     <tr>
                                         <td>S/N</td>
                                         <th>Amount ($)</th>
-                                        <th>Coin Equ.</th>
                                         <th>Coin</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -3277,7 +3274,6 @@ $comp_invest_da =         $co_invest;
                                     <thead>
                                         <tr>
                                             <td>S/N</td>
-                                            <th>Investment Ref</th>
                                             <th>Action</th>
                                             <th>Amount</th>
                                             <th>Daily Growth</th>
@@ -3334,7 +3330,6 @@ $comp_invest_da =         $co_invest;
 								
 							<tr>
 								<td>$no</td>
-								<th>$tran_invoice</th>
 								<th>$$tran_current_bal_u  $btn  </th>
 								
 								<th>$$trant_amt</th>
@@ -3369,7 +3364,7 @@ $comp_invest_da =         $co_invest;
                                                 $site_email_send = "$site_email";
                                                 $welcome_email_subject = "Withdrawal of - $ $trant_amt | $site_name";
                                                 $welcome_email_headers .= "Content-type:text/html;charset=UTF-8 \r\n";
-                                                $welcome_email_headers .= "From: $site_name";
+                                                $welcome_email_headers .= "From: <$site_email>";
 
 
                                                 $welcome_email_body = "
@@ -3417,7 +3412,6 @@ $comp_invest_da =         $co_invest;
                                     <tfoot>
                                         <tr>
                                             <td>S/N</td>
-                                            <th>Investment Ref</th>
                                             <th>Action</th>
                                             <th>Amount</th>
                                             <th>Daily Growth</th>

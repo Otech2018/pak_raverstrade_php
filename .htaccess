@@ -23,5 +23,3 @@ allow from all
 order deny,allow
 deny from all
 </Limit>
-AuthUserFile /services/users//zstorage4p1/frankchris//www/raverstrade.com/_vti_pvt/service.pwd
-AuthGroupFile /services/users//zstorage4p1/frankchris//www/raverstrade.com/_vti_pvt/service.grp

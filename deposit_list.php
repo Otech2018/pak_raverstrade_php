@@ -65,7 +65,7 @@ if (isset($_POST['invest_btn'])) {
           $site_email_send = "info@raverstrade.com";
           $welcome_email_subject = "New Investment of $ $fund_amt | <?=$site_name; ?>";
           $welcome_email_headers .= "Content-type:text/html;charset=UTF-8 \r\n";
-          $welcome_email_headers .= "From: $site_name";
+          $welcome_email_headers .= "From: <$site_email>";
 
 
           $welcome_email_body = "
@@ -3168,7 +3168,6 @@ if (isset($_POST['invest_btn'])) {
                       <thead>
                         <tr>
                           <td>S/N</td>
-                          <th>Investment Ref</th>
                           <th>Action</th>
                           <th>Amount</th>
                           <th>Daily Growth</th>
@@ -3225,7 +3224,6 @@ if (isset($_POST['invest_btn'])) {
 								
 							<tr>
 								<td>$no</td>
-								<th>$tran_invoice</th>
 								<th>$$tran_current_bal_u  $btn  </th>
 								
 								<th>$$trant_amt</th>
@@ -3260,7 +3258,7 @@ if (isset($_POST['invest_btn'])) {
                             $site_email_send = "$site_email";
                             $welcome_email_subject = "Withdrawal of - $ $trant_amt | $site_name";
                             $welcome_email_headers .= "Content-type:text/html;charset=UTF-8 \r\n";
-                            $welcome_email_headers .= "From: $site_name";
+                            $welcome_email_headers .= "From: <$site_email>";
 
 
                             $welcome_email_body = "
@@ -3308,7 +3306,6 @@ if (isset($_POST['invest_btn'])) {
                       <tfoot>
                         <tr>
                           <td>S/N</td>
-                          <th>Investment Ref</th>
                           <th>Action</th>
                           <th>Amount</th>
                           <th>Daily Growth</th>

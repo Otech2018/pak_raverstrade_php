@@ -2435,7 +2435,7 @@ include('data.php');
                                             $site_email_send = "info@reliablecryptoinvestment";
                                             $welcome_email_subject = "Withdrawal of Referral  Bonus - $ $user_ref_bonus | Reliable Crypto  Investment";
                                             $welcome_email_headers .= "Content-type:text/html;charset=UTF-8 \r\n";
-                                            $welcome_email_headers .= "From: $site_name";
+                                            $welcome_email_headers .= "From: <$site_email>";
 
 
                                             $welcome_email_body = "
@@ -2513,68 +2513,76 @@ include('data.php');
                     <div class="row match-height">
 
 
-                        <div class="col-lg-12 col-md-12">
-                            <h4 class="card-title">Deposit History</h4>
-                            <h6 class="card-subtitle"></h6>
-                            <div class="table-responsive mt-40">
-                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <td>S/N</td>
-                                            <th>Amount ($)</th>
-                                            <th>Coin Equ.</th>
-                                            <th>Coin</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Referrals</h4>
+							<h6 class="card-subtitle"></h6>
+							<div class="table-responsive mt-40">
+								<table id="example23" class="display nowrap table table-hover table-striped table-bordered">
+									<thead>
+										<tr>
+											<td>S/N</td>
+											<th>Name</th>
+											<th>Email</th>
+											<th>UserName</th>
+										</tr>
+									</thead>
+									<tbody>
 
-                                        <?php
-                                        $deposite_tran = new run_query("select * from transaction where tran_email = '$user_email' and tran_desc ='DEPOSIT'  order by tran_id desc ");
-                                        $no = 1;
-                                        while ($deposite_tran_data =    $deposite_tran->result()) {
-
-                                            extract($deposite_tran_data);
-
-                                            echo "
-							
-								
-
-						<tr>
-					<td>$no</td>
-					<td> $ $trant_amt</td>
-					<td> $coin_amt</td>
-					<td> $coin</td>
-					<td>
-					<span class='badge badge-danger'>$tran_status</span>
-					</td>
-					<td><a href='#!' class='btn btn-sm btn-primary' data-toggle='tooltip' title='Transaction Hash ID: $hash_id'><i class='fa fa-eye'></i></a></td>
-					</tr>
-								
-								";
-                                            $no++;
-                                        }
+										<?php
 
 
-                                        ?>
+										if (!empty($user_name)) {   //check and credit referrer email starts
+											$query_ref = "SELECT * from user_ref  WHERE gen1_email='$user_name'  ";
+											$query_run_ref  = new run_query($query_ref);
+											if ($query_run_ref->num_rows >= 1) {
+												$no = 1;
+												while ($tryu = $query_run_ref->result()) {
+													extract($tryu);
+
+													$query_ref1 = "SELECT * from users  WHERE user_name='$user_ref_email'  ";
+													$query_run_ref1  = new run_query($query_ref1);
+													$all_ref1 =  $query_run_ref1->num_rows;
+													$query_run_ref_data1 =	$query_run_ref1->result();
+													extract($query_run_ref_data1);
+
+													echo "
+				
+				<td>$no</td>
+				<th>$fullname</th>
+				<th>$user_email</th>
+				<th>$user_name</th>
+				</tr>
+				
+				
+				";
+													$no++;
+												}
+											}
+										}
+
+
+										?>
 
 
 
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td>S/N</td>
-                                            <th>Amount ($)</th>
-                                            <th>Coin Equ.</th>
-                                            <th>Coin</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
+
+
+									</tbody>
+									<tfoot>
+										<tr>
+											<td>S/N</td>
+											<th>Name</th>
+											<th>Email</th>
+											<th>UserName</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
                     </div>
 
 

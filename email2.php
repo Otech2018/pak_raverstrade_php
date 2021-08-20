@@ -6,8 +6,8 @@ $email = "ajahogonnaya2012@gmail.com";
 
 $site_email_send = $site_email;
 					$welcome_email_subject = "Welcome to $site_name";
-					$welcome_email_headers = "Content-type:text/html;charset=UTF-8 \r\n";
-					$welcome_email_headers .= "From: <$site_email>";
+					// $welcome_email_headers = "Content-type:text/html;charset=UTF-8 \r\n";
+					$welcome_email_headers = "From: <$site_email>";
 
 
 					$welcome_email_body = "

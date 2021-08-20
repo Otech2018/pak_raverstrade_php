@@ -35,14 +35,14 @@ class connect{
 	public  $host = 'localhost';
 		
 			
-	// public  $username = 'frankchris_raverstrade';
-    //    public  $password = 'raverstrade';
-	// public  $db = 'frankchris_raverstrade';			
+	 public  $username = 'frankchris_raverstrade';
+    	 public  $password = 'raverstrade';
+	 public  $db = 'frankchris_raverstrade';			
 	
 	
-	public  $username = 'ben';
-       public  $password = '1991';
-	public  $db = 'bitwave_db';		
+	// public  $username = 'ben';
+      //  public  $password = '19iofgdd91';
+	// public  $db = 'bitwave_db';		
 		
 	}
 	
@@ -196,10 +196,9 @@ $settings_data =	$settings->result();
 			
 			
 			
-			
 			function btc_usd($amt){
-				
-				$getrate = "https://api.alternative.me/v2/ticker/?convert=USD";
+	
+			$getrate = "https://api.alternative.me/v2/ticker/?convert=USD";
 			
 			$price = file_get_contents($getrate);
 			$result = json_decode($price, true);
@@ -208,7 +207,7 @@ $settings_data =	$settings->result();
 			$result = $result['data'][1]['quotes']['USD']['price'];
 			
 			$quantity = $amt;
-			$value = $quantity / $result;
+			$value = $quantity * $result;
 				
-				return $result;
+				return $value;
 			}

@@ -2441,7 +2441,6 @@ include('data.php');
                                         <tr>
                                             <td>S/N</td>
                                             <th>Amount ($)</th>
-                                            <th>Coin Equ.</th>
                                             <th>Coin</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -2463,7 +2462,6 @@ include('data.php');
 						<tr>
 					<td>$no</td>
 					<td> $ $trant_amt</td>
-					<td> $coin_amt</td>
 					<td> $coin</td>
 					<td>
 					<span class='badge badge-danger'>$tran_status</span>
@@ -2485,7 +2483,6 @@ include('data.php');
                                         <tr>
                                             <td>S/N</td>
                                             <th>Amount ($)</th>
-                                            <th>Coin Equ.</th>
                                             <th>Coin</th>
                                             <th>Status</th>
                                             <th>Action</th>

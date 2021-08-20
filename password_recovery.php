@@ -1,5 +1,3 @@
-
-
 <?php include('settings.php'); 
 
 
@@ -15,7 +13,7 @@ if (isset($_POST['rec'])){
 
                         $welcome_email_subject = "RECOVERY PASSWORD FROM - $site_name";
 $welcome_email_headers = "Content-type:text/html;charset=UTF-8 \r\n";
-$welcome_email_headers .= "From: $site_name";   
+$welcome_email_headers .= "From: <$site_email>";   
 
 
 $welcome_email_body = "
@@ -30,9 +28,9 @@ $welcome_email_body = "
 You requested for your passowrd and we get it for you securely and safely , <br/>
 you login details is as follows:
 <br/>
-Username: <b> $user_name </b>
-Email: <b> $user_email </b>
-Password: <b> $user_password </b>
+Username: <b> $user_name </b> <br/>
+Email: <b> $user_email </b>   <br/>
+Password: <b> $user_password </b>  <br/>
 <b><i>We are Happy To Have  you on Board again. </i></b><br/>
 You can now login with this Credential!!! <br/><br/>
 <hr/>
